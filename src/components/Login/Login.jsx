@@ -11,6 +11,8 @@ function Login() {
           <div className='input-box'>
             <input type="password" placeholder='Password' required/>
           </div>
+
+          <div className='remember'></div>
         </form>
     </div>
   )
