@@ -13,7 +13,7 @@ function Login() {
           </div>
 
           <div className='remember'>
-            <label><input type="checkbox" /></label>
+            <label><input type="checkbox" />Remember me</label>
           </div>
         </form>
     </div>
