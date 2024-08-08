@@ -6,10 +6,10 @@ function Login() {
         <form action="">
           <h1>Sign In</h1>
           <div className='input-box'>
-            <input type="text" placeholder='Username' required/>
+            <input type="email" placeholder='Username' required/>
           </div>
           <div className='input-box'>
-            <input type="text" placeholder='Username' required/>
+            <input type="password" placeholder='Password' required/>
           </div>
         </form>
     </div>
