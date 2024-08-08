@@ -18,6 +18,8 @@ function Login() {
           </div>
 
           <button type='submit'>Login</button>
+
+          <div className='register'></div>
         </form>
     </div>
   )
