@@ -20,3 +20,10 @@
     font-size: 16px;
     padding: 20px 45px 20px 45px;
 }
+
+.form .remember {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: -15px 0 15px;
+}
