@@ -12,7 +12,9 @@ function Login() {
             <input type="password" placeholder='Password' required/>
           </div>
 
-          <div className='remember'></div>
+          <div className='remember'>
+            <label></label>
+          </div>
         </form>
     </div>
   )
