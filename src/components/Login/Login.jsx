@@ -6,6 +6,7 @@ function Login() {
         <div className='header'>
             <h1>Sign In</h1>
         </div>
+        <div className='fields'></div>
     </div>
   )
 }
