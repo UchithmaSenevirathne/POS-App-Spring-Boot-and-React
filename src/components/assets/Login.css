@@ -4,6 +4,10 @@
     text-align: center;
 }
 
+.form form > h1 {
+    padding: 20px 0 50px 0;
+}
+
 .input-box {
     margin-bottom: 20px;
 }
