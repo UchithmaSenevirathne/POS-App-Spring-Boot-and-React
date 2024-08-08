@@ -27,3 +27,8 @@
     font-size: 14px;
     margin: -15px 0 15px;
 }
+
+.remember label input {
+    margin-right: 4px;
+}
+
