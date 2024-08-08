@@ -14,7 +14,7 @@ function Login() {
           </div>
 
           <div className='remember'>
-            <label><input type="checkbox" />Remember me</label>
+            <label><input type="checkbox" class="checkbox-round"/>Remember me</label>
             <a href="#">Forgot password?</a>
           </div>
 
