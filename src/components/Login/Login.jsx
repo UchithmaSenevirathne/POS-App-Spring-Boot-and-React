@@ -14,6 +14,7 @@ function Login() {
 
           <div className='remember'>
             <label><input type="checkbox" />Remember me</label>
+            <a href="#">Forgot password?</a>
           </div>
         </form>
     </div>
