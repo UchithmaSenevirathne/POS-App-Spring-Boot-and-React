@@ -8,6 +8,9 @@ function Login() {
           <div className='input-box'>
             <input type="text" placeholder='Username' required/>
           </div>
+          <div className='input-box'>
+            <input type="text" placeholder='Username' required/>
+          </div>
         </form>
     </div>
   )
