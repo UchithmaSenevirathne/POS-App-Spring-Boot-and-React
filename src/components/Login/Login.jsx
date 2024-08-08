@@ -6,7 +6,7 @@ function Login() {
         <form action="">
           <h1>Sign In</h1>
           <div className='input-box'>
-            <input type="text" placeholder='Username'/>
+            <input type="text" placeholder='Username' required/>
           </div>
         </form>
     </div>
