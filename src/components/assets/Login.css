@@ -59,3 +59,13 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.register p a {
+    text-decoration: none;
+    font-weight: 600;
+    color: black
+}
+
+.register p a:hover{
+    text-decoration: underline;
+}
