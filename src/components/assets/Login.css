@@ -53,3 +53,9 @@
     font-weight: 700;
     cursor: pointer;
 }
+
+.form .register {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 20px;
+}
