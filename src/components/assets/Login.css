@@ -49,12 +49,16 @@
     height: 40px;
     border: none;
     border-radius: 20px;
-    background-color: orangered;
-    color: white;
+    background-color: #00B074;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     margin-top: 30px;
+}
+
+.form button .login {
+    text-decoration: none;
+    color: white;
 }
 
 .form .register {
@@ -87,6 +91,6 @@
 }
 
 .checkbox-round:checked {
-    background-color: orangered;
-    border: 1px solid orangered;
+    background-color: #00B074;
+    border: 1px solid #00B074;
 }

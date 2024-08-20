@@ -1,5 +1,6 @@
 import React from 'react'
-import '../assets/Login.css'
+import '../../assets/Login.css'
+import { NavLink } from 'react-router-dom'
 
 function Login() {
   return (
@@ -18,7 +19,7 @@ function Login() {
             <a href="#">Forgot password?</a>
           </div>
 
-          <button type='submit'>Login</button>
+          <button type='submit'><NavLink className='login' to='/dashboard'>Login</NavLink></button>
 
           <div className='register'>
             <p>Don't have an account? <a href="#">Register</a></p>
