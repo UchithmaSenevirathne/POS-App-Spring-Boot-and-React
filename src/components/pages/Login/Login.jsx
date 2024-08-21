@@ -19,7 +19,7 @@ function Login() {
             <a href="#">Forgot password?</a>
           </div>
 
-          <button type='submit'><NavLink className='login' to='/dashboard'>Login</NavLink></button>
+          <button type='submit'><NavLink className='login' to='/layout'>Login</NavLink></button>
 
           <div className='register'>
             <p>Don't have an account? <a href="#">Register</a></p>
