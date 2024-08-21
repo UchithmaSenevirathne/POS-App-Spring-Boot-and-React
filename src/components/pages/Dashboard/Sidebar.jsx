@@ -33,7 +33,7 @@ function SidebarLink({ item }) {
     const {pathname} = useLocation()
 
     return(
-        <Link to={item.path} className={classNames (pathname === item.path ? 'bg-[#D9F3EA] text-[#00B074]' : 'text-[#00B074] flex items-center gap-2 font-normal px-3 py-2 hover:bg-[#D9F3EA] hover:no-underline active:bg-[#D9F3EA] rounded-sm text-base')}>
+        <Link to={item.path} className={classNames (pathname === item.path ? 'bg-[#D9F3EA] text-[#00B074]' : 'text-[#00B074] flex items-center gap-2 font-normal px-3 py-2 hover:bg-[#D9F3EA] hover:no-underline active:bg-[#D9F3EA] rounded-md text-base')}>
             <span className='text-xl'>{item.icon}</span>
             {item.label}
         </Link>
