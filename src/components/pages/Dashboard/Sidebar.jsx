@@ -10,7 +10,7 @@ import { FaCartShopping } from 'react-icons/fa6'
 export default function Sidebar() {
   return (
     <div className='flex flex-col p-3 bg-white text-[#00B074] w-60'>
-            <div className='flex items-center gap-2 px-1 py-3'>
+            <div className='flex items-center gap-2 px-6 py-3'>
                 <FaCartShopping fontSize={24}/>
                 <span className='text-lg font-bold text-black'>FOODIE</span>
             </div>
@@ -20,7 +20,7 @@ export default function Sidebar() {
                 ))}
             </div>
             <div className='flex flex-col gap-0.5 pt-2 '>
-                <div className={classNames ('text-red-500 cursor-pointer flex items-center gap-2 font-normal px-3 py-2 hover:no-underline text-base')}>
+                <div className={classNames ('text-red-500 cursor-pointer flex items-center gap-2 font-normal px-6 py-2 hover:no-underline text-base')}>
                     <span className='text-xl'><HiOutlineLogout/></span>
                     Logout
                 </div>
@@ -33,7 +33,7 @@ function SidebarLink({ item }) {
     const {pathname} = useLocation()
 
     return(
-        <Link to={item.path} className={classNames (pathname === item.path ? 'bg-[#D9F3EA] text-[#00B074]' : 'text-[#00B074] flex items-center gap-2 font-normal px-3 py-2 hover:bg-[#D9F3EA] hover:no-underline active:bg-[#D9F3EA] rounded-md text-base')}>
+        <Link to={item.path} className={classNames (pathname === item.path ? 'bg-[#D9F3EA] text-[#00B074]' : 'text-[#00B074] flex items-center gap-2 font-normal px-6 py-2 hover:bg-[#D9F3EA] hover:no-underline active:bg-[#D9F3EA] rounded-md text-base  mx-3')}>
             <span className='text-xl'>{item.icon}</span>
             {item.label}
         </Link>

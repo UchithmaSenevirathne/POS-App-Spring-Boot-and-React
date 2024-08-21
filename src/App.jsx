@@ -9,7 +9,9 @@ function App() {
     <>
       <Routes>
         <Route exact path="/" element={<Login />} />
-        <Route exact path="/layout" element={<Layout />} />
+        <Route exact path="/layout" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
       </Routes>
     </>
   );
