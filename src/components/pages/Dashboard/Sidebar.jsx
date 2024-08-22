@@ -6,15 +6,14 @@ import classNames from 'classnames'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { FaCartShopping } from 'react-icons/fa6'
 
-
 export default function Sidebar() {
   return (
     <div className='flex flex-col p-3 bg-white text-[#00B074] w-60'>
-            <div className='flex items-center gap-2 px-6 py-3'>
-                <FaCartShopping fontSize={24}/>
-                <span className='text-lg font-bold text-black'>FOODIE</span>
+            <div className='flex items-center gap-2 px-6 pt-6 pb-4'>
+                <FaCartShopping fontSize={26}/>
+                <span className='text-lg font-extrabold text-black'>FOODIE</span>
             </div>
-            <div className='flex-1 py-8 flex flex-col gap-0.5'>
+            <div className='flex flex-col flex-1 gap-2 py-8'>
                 {DASHBOARD_SIDEBAR_LINKS.map((item) => (
                     <SidebarLink key={item.key} item={item}/>
                 ))}

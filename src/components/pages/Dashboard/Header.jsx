@@ -9,7 +9,7 @@ export default function Header() {
     const navigate = useNavigate()
 
     return(
-        <div className='flex items-center justify-between h-16 px-4 bg-white'>
+        <div className='flex items-center justify-between h-24 pr-6 bg-white'>
             <div className='relative'>
                 <HiOutlineSearch fontSize={20} className='absolute text-gray-400 -translate-y-1/2 top-1/2 left-3'/>
                 <input type='text' placeholder='Search...' className='text-sm focus:outline-none active:outline-none h-10 w-[24rem] rounded-md pr-4 pl-11 bg-[#EEF2F5]'/>
