@@ -67,114 +67,171 @@ function Dashboard() {
   const products = {
     Donuts: [
       {
-        name: "Donuts",
-        price: "$5.00",
-        image: require("../../assets/images/donut.png"),
+        id: 1,
+        name: "Almond Donuts",
+        price: "5.00",
+        image: require("../../assets/images/donut/almonddont.png"),
       },
+      {
+        id: 2,
+        name: "Apple Cider Donuts",
+        price: "5.00",
+        image: require("../../assets/images/donut/appleciderdont.png"),
+      },
+      {
+        id: 3,
+        name: "Snow Donuts",
+        price: "5.00",
+        image: require("../../assets/images/donut/snowdont.png"),
+      },
+      {
+        id: 4,
+        name: "Glazed Donuts",
+        price: "5.00",
+        image: require("../../assets/images/donut/glazeddont.png"),
+      }
     ],
     Burger: [
       {
-        id: 1,
+        id: 5,
         name: "Bean Burger",
         price: "105",
         image: require("../../assets/images/beanburg.png"),
       },
       {
-        id: 2,
+        id: 6,
         name: "Cheese Burger",
         price: "105",
         image: require("../../assets/images/cheeseburg.png"),
       },
       {
-        id: 3,
+        id: 7,
         name: "Mixed Burger",
         price: "105",
         image: require("../../assets/images/mixedburg.png"),
       },
       {
-        id: 4,
+        id: 8,
         name: "Vegetable Burger",
         price: "105",
         image: require("../../assets/images/vegburg.png"),
       },
       {
-        id: 5,
+        id: 9,
         name: "Salmon Burger",
         price: "105",
         image: require("../../assets/images/salmburg.png"),
       },
       {
-        id: 6,
+        id: 10,
         name: "Meat Burger",
         price: "105",
         image: require("../../assets/images/meatburg.png"),
       },
       {
-        id: 7,
-        name: "Meat Burger",
+        id: 11,
+        name: "Lamb Burger",
         price: "105",
-        image: require("../../assets/images/meatburg.png"),
+        image: require("../../assets/images/lambBurg.png"),
       },
       {
-        id: 8,
-        name: "Meat Burger",
+        id: 12,
+        name: "Mushroom-Beef Burger",
         price: "105",
-        image: require("../../assets/images/meatburg.png"),
+        image: require("../../assets/images/beefBurg.png"),
       },
     ],
     "Ice Cream": [
       {
-        name: "Ice Cream",
-        price: "$15.00",
-        image: require("../../assets/images/ice-cream.png"),
+        id: 13,
+        name: "Chocolate Ice Cream",
+        price: "15.00",
+        image: require("../../assets/images/ice/chocolate.png"),
+      },
+      {
+        id: 14,
+        name: "Black Berry Ice Cream",
+        price: "15.00",
+        image: require("../../assets/images/ice/blckberry.png"),
+      },
+      {
+        id: 15,
+        name: "Vanilla Cream",
+        price: "15.00",
+        image: require("../../assets/images/ice/vanilla.png"),
+      },
+      {
+        id: 16,
+        name: "Mixed Ice Cream",
+        price: "15.00",
+        image: require("../../assets/images/ice/mixed.png"),
       },
     ],
     Chicken: [
       {
-        name: "Chicken",
-        price: "$20.00",
-        image: require("../../assets/images/chicken.png"),
+        id: 17,
+        name: "Baked Chicken",
+        price: "20.00",
+        image: require("../../assets/images/chicken/backedchick.png"),
+      },
+      {
+        id: 18,
+        name: "Chicken BBQ",
+        price: "20.00",
+        image: require("../../assets/images/chicken/bbqchick.png"),
+      },
+      {
+        id: 19,
+        name: "Chop Salad with Grilled Chicken",
+        price: "20.00",
+        image: require("../../assets/images/chicken/chopsaladwithgrilledchick.png"),
+      },
+      {
+        id: 20,
+        name: "Crispy Chicken",
+        price: "20.00",
+        image: require("../../assets/images/chicken/crispychick.png"),
       },
     ],
     Drinks: [
       {
         name: "Drinks",
-        price: "$10.00",
+        price: "10.00",
         image: require("../../assets/images/drink.png"),
       },
     ],
     Pizza: [
       {
         name: "Pizza",
-        price: "$30.00",
+        price: "30.00",
         image: require("../../assets/images/pizza.png"),
       },
     ],
     Cakes: [
       {
         name: "Cakes",
-        price: "$25.00",
+        price: "25.00",
         image: require("../../assets/images/cupcake.png"),
       },
     ],
     "Hot dog": [
       {
         name: "Hot dog",
-        price: "$7.00",
+        price: "7.00",
         image: require("../../assets/images/hot-dog.png"),
       },
     ],
     Potato: [
       {
         name: "Potato",
-        price: "$4.00",
+        price: "4.00",
         image: require("../../assets/images/fries.png"),
       },
     ],
     Veg: [
       {
         name: "Veg",
-        price: "$8.00",
+        price: "8.00",
         image: require("../../assets/images/salad.png"),
       },
     ],
@@ -211,6 +268,11 @@ function Dashboard() {
     ));
   };
 
+  // Remove from cart
+  const handleRemoveFromCart = (productId) => {
+    setCart(cart.filter(item => item.id !== productId));
+  };
+
   return (
     <div className="flex gap-14">
       <div className="flex flex-col w-full gap-4">
@@ -231,6 +293,7 @@ function Dashboard() {
         <MyOrders cart={cart} 
         onIncreaseQty = {increaseQty}
         onDecreaseQty = {decreaseQty}
+        onRemoveFromCart = {handleRemoveFromCart}
         />
       </div>
     </div>

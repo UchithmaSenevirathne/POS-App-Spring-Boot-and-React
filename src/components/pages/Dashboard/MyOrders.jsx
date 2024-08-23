@@ -7,7 +7,7 @@ import {
 import { HiOutlineCursorArrowRays } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
-function MyOrders({ cart, onIncreaseQty, onDecreaseQty }) {
+function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart }) {
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -59,7 +59,7 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty }) {
               $ {(item.price * item.quantity).toFixed(2)}
             </p>
             <div className="ml-3">
-              <HiOutlineX className="text-gray-400" />
+              <HiOutlineX className="text-gray-400" onClick={() => onRemoveFromCart(item.id)} />
             </div>
           </div>
         ))}
