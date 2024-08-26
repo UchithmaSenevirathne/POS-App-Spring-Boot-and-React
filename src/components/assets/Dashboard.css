@@ -1,0 +1,11 @@
+.cart::-webkit-scrollbar{
+    /* width:5px; */
+    /* color:orange; */
+    /* display: none; */
+}
+
+.order::-webkit-scrollbar{
+    /* width: 5px;
+    background-color: orange; */
+    /* display: none; */
+}

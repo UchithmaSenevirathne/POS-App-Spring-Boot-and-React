@@ -20,11 +20,11 @@ export default function Header() {
                         <>
                             <Popover.Button
                                 className={classNames(
-                                    open && 'bg-[#D9F3EA]',
-                                    'group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-[#D9F3EA]'
+                                    open && 'bg-[#fff3dd]',
+                                    'group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-[#fff3dd]'
                                 )}
                             >
-                                <HiOutlineChatAlt fontSize={24} className='text-[#00B074]'/>
+                                <HiOutlineChatAlt fontSize={24} className='text-[orange]'/>
                             </Popover.Button>
                             <Transition
                                 as={Fragment}
@@ -37,7 +37,7 @@ export default function Header() {
                             >
                                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
                                     <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
-                                        <strong className="font-medium text-[#00B074]">Messages</strong>
+                                        <strong className="font-medium text-[orange]">Messages</strong>
                                         <div className="py-1 mt-2 text-sm">This is messages panel.</div>
                                     </div>
                                 </Popover.Panel>
@@ -50,11 +50,11 @@ export default function Header() {
                         <>
                             <Popover.Button
                                 className={classNames(
-                                    open && 'bg-[#D9F3EA]',
-                                    'group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-[#D9F3EA]'
+                                    open && 'bg-[#fff3dd]',
+                                    'group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none active:bg-[#fff3dd]'
                                 )}
                             >
-                                <HiOutlineBell fontSize={24} className='text-[#00B074]'/>
+                                <HiOutlineBell fontSize={24} className='text-[orange]'/>
                             </Popover.Button>
                             <Transition
                                 as={Fragment}
@@ -67,7 +67,7 @@ export default function Header() {
                             >
                                 <Popover.Panel className="absolute right-0 z-10 mt-2.5 transform w-80">
                                     <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
-                                        <strong className="font-medium text-[#00B074]">Notifications</strong>
+                                        <strong className="font-medium text-[orange]">Notifications</strong>
                                         <div className="py-1 mt-2 text-sm">This is notification panel.</div>
                                     </div>
                                 </Popover.Panel>
@@ -77,7 +77,7 @@ export default function Header() {
                 </Popover>
                 <Menu as="div" className="relative">
                     <div>
-                        <Menu.Button className="flex ml-2 text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-[#D9F3EA]">
+                        <Menu.Button className="flex ml-2 text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-[#fff3dd]">
                             <span className="sr-only">Open user menu</span>
                             <div
                                 className="w-10 h-10 bg-center bg-no-repeat bg-cover rounded-full bg-sky-500"
@@ -102,34 +102,34 @@ export default function Header() {
                                     <div
                                         onClick={() => navigate('/profile')}
                                         className={classNames(
-                                            active && 'bg-[#D9F3EA]',
-                                            'active:bg-[#D9F3EA] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#D9F3EA]'
+                                            active && 'bg-[#fff3dd]',
+                                            'active:bg-[#fff3dd] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#fff3dd]'
                                         )}
                                     >
                                         Your Profile
                                     </div>
                                 )}
                             </Menu.Item>
-                            <Menu.Item>
+                            {/* <Menu.Item>
                                 {({ active }) => (
                                     <div
                                         onClick={() => navigate('/settings')}
                                         className={classNames(
-                                            active && 'bg-[#D9F3EA]',
-                                            'active:bg-[#D9F3EA] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#D9F3EA]'
+                                            active && 'bg-[#fff3dd]',
+                                            'active:bg-[#fff3dd] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#fff3dd]'
                                         )}
                                     >
                                         Settings
                                     </div>
                                 )}
-                            </Menu.Item>
+                            </Menu.Item> */}
                             <Menu.Item>
                                 {({ active }) => (
                                     <div
                                         onClick={() => navigate('/logout')}
                                         className={classNames(
-                                            active && 'bg-[#D9F3EA]',
-                                            'active:bg-[#D9F3EA] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#D9F3EA]'
+                                            active && 'bg-[#fff3dd]',
+                                            'active:bg-[#fff3dd] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#fff3dd]'
                                         )}
                                     >
                                         Logout

@@ -10,9 +10,9 @@ function PopularProducts({products, onAddToCart}) {
     
   return (
     <>
-    <h1 className='ml-1 font-bold text-[16px] pb-5'>Popular Products</h1>
+    <h1 className='ml-1 font-bold text-[18px] pb-5'>Popular Products</h1>
 
-    <div className="grid w-full grid-cols-4 gap-4 pb-4">
+    <div className="grid w-full grid-cols-4 gap-4 pb-4 overflow-y-auto max-h-[445px] order">
         {products.map((product, index) => (
           <BoxWrapper key={index}>
             <div className='flex items-center justify-center w-full h-32 bg-[#EEF2F5] rounded-md'>
@@ -20,9 +20,9 @@ function PopularProducts({products, onAddToCart}) {
             </div>
             <div className='flex flex-col'>
               <span className='text-black text-[14px] font-semibold pb-1'>{product.name}</span>
-              <p className='text-[#00B074] font-bold'>$ {product.price}</p>
+              <p className='text-[orange] font-bold'>$ {product.price}</p>
             </div>
-            <button className='bg-[#00B074] text-white text-[14px] py-2 ml-28 rounded-md' onClick={() => onAddToCart(product)}>Add to Cart</button>
+            <button className='bg-[orange] text-white text-[14px] py-2 ml-28 rounded-md' onClick={() => onAddToCart(product)}>Add to Cart</button>
           </BoxWrapper>
         ))}
       </div>
@@ -31,7 +31,7 @@ function PopularProducts({products, onAddToCart}) {
 }
 
 function BoxWrapper({ children }) {
-    return <div className="flex flex-col flex-1 gap-3 p-5 bg-white border rounded-md hover:shadow-md">{children}</div>
+    return <div className="flex flex-col flex-1 gap-3 p-5 bg-white rounded-md hover:shadow-md">{children}</div>
 }
 
 

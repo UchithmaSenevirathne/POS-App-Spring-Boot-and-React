@@ -50,7 +50,7 @@
     height: 40px;
     border: none;
     border-radius: 10px;
-    background-color: #00B074;
+    background-color: orange;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
@@ -76,6 +76,7 @@
 
 .register p a:hover{
     text-decoration: underline;
+    color: orange;
 }
 
 .checkbox-round {
@@ -92,6 +93,6 @@
 }
 
 .checkbox-round:checked {
-    background-color: #00B074;
-    border: 1px solid #00B074;
+    background-color: orange;
+    border: 1px solid orange;
 }

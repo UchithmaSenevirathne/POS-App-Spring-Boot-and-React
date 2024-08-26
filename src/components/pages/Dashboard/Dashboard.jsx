@@ -274,7 +274,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex gap-14">
+    <div className="flex h-full gap-10">
       <div className="flex flex-col w-full gap-4">
         <div className="w-full">
           <DashboardStartsGrid
@@ -282,14 +282,14 @@ function Dashboard() {
             setSelectedCategory={setSelectedCategory}
           />
         </div>
-        <div className="pt-5">
+        <div className="pt-1">
           <PopularProducts
             products={products[selectedCategory]}
             onAddToCart={handleAddToCart}
           />
         </div>
       </div>
-      <div>
+      <div className="pr-10">
         <MyOrders cart={cart} 
         onIncreaseQty = {increaseQty}
         onDecreaseQty = {decreaseQty}

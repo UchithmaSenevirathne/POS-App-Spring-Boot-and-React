@@ -16,7 +16,7 @@ import './PopularProducts'
 function DashboardStartsGrid({ categories, setSelectedCategory }) {
   return (
     <>
-    <h1 className='ml-1 font-bold text-[16px] pb-5'>Explore Categories</h1>
+    <h1 className='ml-1 font-bold text-[18px] pb-5'>Explore Categories</h1>
     
     <div className="grid w-full grid-cols-5 gap-4 pb-4">
         {categories.map((category, index) => (
@@ -131,5 +131,5 @@ function DashboardStartsGrid({ categories, setSelectedCategory }) {
 export default DashboardStartsGrid
 
 function BoxWrapper({ children, onClick  }) {
-    return <div className="flex items-center flex-1 p-4 bg-white hover:bg-[#D9F3EA] active:bg-[#D9F3EA] border rounded-md hover:border-[#00B074]" onClick={onClick}>{children}</div>
+    return <div className="flex items-center flex-1 p-4 bg-white hover:bg-[#fff3dd] active:bg-[#fff3dd] border rounded-md hover:border-[orange]" onClick={onClick}>{children}</div>
 }

@@ -9,7 +9,7 @@ export default function Layout() {
     <Sidebar/>
     <div className='flex flex-col flex-1'>
         <Header/>
-        <div className='flex-1 min-h-0 py-5 overflow-auto pl-14'>
+        <div className='flex-1 min-h-0 pl-10 overflow-auto py-9'>
             {<Outlet/>}
         </div>
     </div>
