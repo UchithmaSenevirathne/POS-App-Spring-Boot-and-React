@@ -31,7 +31,7 @@ function PopularProducts({products, onAddToCart}) {
 }
 
 function BoxWrapper({ children }) {
-    return <div className="flex flex-col flex-1 gap-3 p-5 bg-white rounded-md hover:shadow-md">{children}</div>
+    return <div className="flex flex-col flex-1 gap-3 p-5 transition-all duration-500 bg-white rounded-md hover:shadow-md">{children}</div>
 }
 
 

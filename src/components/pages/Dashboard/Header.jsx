@@ -126,10 +126,10 @@ export default function Header() {
                             <Menu.Item>
                                 {({ active }) => (
                                     <div
-                                        onClick={() => navigate('/logout')}
+                                        onClick={() => navigate('/')}
                                         className={classNames(
                                             active && 'bg-[#fff3dd]',
-                                            'active:bg-[#fff3dd] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#fff3dd]'
+                                            'active:bg-[#fff3dd] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#fff3dd] transition-all duration-500'
                                         )}
                                     >
                                         Logout

@@ -51,16 +51,16 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart }) {
             <div className="flex flex-col flex-1 gap-3 mx-5">
               <h3 className="text-sm font-semibold">{item.name}</h3>
               <div className="flex items-center border-[orange] rounded-full w-14">
-                <button className="px-2" onClick={() => onDecreaseQty(item.id)}>-</button>
+                <button className="px-2 hover:text-[orange]" onClick={() => onDecreaseQty(item.id)}>-</button>
                 <span>{item.quantity}</span>
-                <button className="px-2" onClick={() => onIncreaseQty(item.id)}>+</button>
+                <button className="px-2 hover:text-[orange]" onClick={() => onIncreaseQty(item.id)}>+</button>
               </div>
             </div>
             <p className="font-bold text-red-500">
               $ {(item.price * item.quantity).toFixed(2)}
             </p>
             <div className="ml-3">
-              <HiOutlineX className="text-gray-400" onClick={() => onRemoveFromCart(item.id)} />
+              <HiOutlineX className="text-gray-400 cursor-pointer" onClick={() => onRemoveFromCart(item.id)} />
             </div>
           </div>
         ))}
