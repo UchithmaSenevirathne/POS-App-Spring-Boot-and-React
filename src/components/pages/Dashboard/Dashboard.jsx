@@ -195,23 +195,110 @@ function Dashboard() {
     ],
     Drinks: [
       {
-        name: "Drinks",
+        id: 21,
+        name: "Chocolate Shake",
         price: "10.00",
-        image: require("../../assets/images/drink.png"),
+        image: require("../../assets/images/drinks/chocolate-shake.png"),
       },
+      {
+        id: 22,
+        name: "Fruit Ice Tea",
+        price: "10.00",
+        image: require("../../assets/images/drinks/fruit-ice-tea.png"),
+      },
+      {
+        id: 23,
+        name: "Lemonade",
+        price: "10.00",
+        image: require("../../assets/images/drinks/lemonade.png"),
+      },
+      {
+        id: 24,
+        name: "Orange Juice",
+        price: "10.00",
+        image: require("../../assets/images/drinks/orange-juice.png"),
+      }
     ],
     Pizza: [
       {
-        name: "Pizza",
+        id: 25,
+        name: "Beef Pepperoni Pizza",
         price: "30.00",
-        image: require("../../assets/images/pizza.png"),
+        image: require("../../assets/images/pizza/beefpepperoni-pz.png"),
+      },
+      {
+        id: 26,
+        name: "Cheese Lovers",
+        price: "30.00",
+        image: require("../../assets/images/pizza/cheeselovers-pz.png"),
+      },
+      {
+        id: 27,
+        name: "Cheesy Onion and Green Chilly",
+        price: "30.00",
+        image: require("../../assets/images/pizza/cheesyoniongreenchilly-pz.png"),
+      },
+      {
+        id: 28,
+        name: "Double Chicken Surprise",
+        price: "30.00",
+        image: require("../../assets/images/pizza/doublechicksurprise-pz.png"),
+      },
+      {
+        id: 29,
+        name: "Seafood Treat Pizza",
+        price: "30.00",
+        image: require("../../assets/images/pizza/seafoodtreat-pz.png"),
+      },
+      {
+        id: 30,
+        name: "Spicy Fish Pizza",
+        price: "30.00",
+        image: require("../../assets/images/pizza/spicy-fish-pz.png"),
+      },
+      {
+        id: 31,
+        name: "Tandoori Chicken Pizza",
+        price: "30.00",
+        image: require("../../assets/images/pizza/tandoorichick-pz.png"),
+      },
+      {
+        id: 32,
+        name: "Veggie Masala Pizza",
+        price: "30.00",
+        image: require("../../assets/images/pizza/veggie-masala-pz.png"),
       },
     ],
     Cakes: [
       {
-        name: "Cakes",
+        id: 33,
+        name: "Banana Cake",
         price: "25.00",
-        image: require("../../assets/images/cupcake.png"),
+        image: require("../../assets/images/cake/banana-ck.png"),
+      },
+      {
+        id: 34,
+        name: "Blueberry Friands Cake",
+        price: "25.00",
+        image: require("../../assets/images/cake/blueberry-friands-ck.png"),
+      },
+      {
+        id: 35,
+        name: "Chocolate Coconut Cake",
+        price: "25.00",
+        image: require("../../assets/images/cake/choco-coconut-ck.png"),
+      },
+      {
+        id: 36,
+        name: "Lemon Yoghurt Cake",
+        price: "25.00",
+        image: require("../../assets/images/cake/lemon-yoghurt-ck.png"),
+      },
+      {
+        id: 37,
+        name: "Orange Almond Cake",
+        price: "25.00",
+        image: require("../../assets/images/cake/orange-almond-ck.png"),
       },
     ],
     "Hot dog": [

@@ -57,24 +57,24 @@
     margin-top: 30px;
 }
 
-.form button .login {
+.form button .btn {
     text-decoration: none;
     color: white;
 }
 
-.form .register {
+.form .nav {
     font-size: 13px;
     text-align: center;
     margin: 20px 0 15px;
 }
 
-.register p a {
+.nav p .nav-link {
     text-decoration: none;
     font-weight: 600;
     color: black
 }
 
-.register p a:hover{
+.nav p .nav-link:hover{
     text-decoration: underline;
     color: orange;
 }

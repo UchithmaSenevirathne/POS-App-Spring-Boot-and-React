@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Sidebar() {
     const navigate = useNavigate()
+    const { pathname } = useLocation();
     
   return (
     <div className='flex flex-col p-3 bg-white text-[orange] w-60'>
@@ -18,7 +19,7 @@ export default function Sidebar() {
             </div>
             <div className='flex flex-col flex-1 gap-4 py-8'>
                 {DASHBOARD_SIDEBAR_LINKS.map((item) => (
-                    <SidebarLink key={item.key} item={item}/>
+                    <SidebarLink key={item.key} item={item} currentPath={pathname}/>
                 ))}
             </div>
             <div className='flex flex-col gap-0.5 pt-2 '>
@@ -31,14 +32,20 @@ export default function Sidebar() {
   )
 }
 
-function SidebarLink({ item }) {
-    const {pathname} = useLocation()
+function SidebarLink({ item, currentPath }) {
+    const isActive = currentPath === `/layout${item.path}`; // Updated to match the full path
 
-    return(
-        <Link to={item.path} className={classNames (pathname === item.path ? 'bg-[#fff3dd] text-[orange]' : 'text-[#b6b6b6] flex items-center gap-2 font-normal px-6 py-2 hover:bg-[#fff3dd] hover:no-underline active:bg-[#fff3dd] rounded-md text-base  mx-3 transition-all duration-500 hover:text-[orange]')}>
-            <span className='text-xl'>{item.icon}</span>
-            {item.label}
-        </Link>
-    )
+  return (
+    <Link
+      to={`/layout${item.path}`} // Updated path to match App.jsx route paths
+      className={classNames(
+        'flex items-center gap-2 font-normal px-6 py-2 rounded-md text-base mx-3 transition-all duration-500 no-underline hover:no-underline',
+        isActive ? 'bg-[#fff3dd] text-[orange]' : 'text-[#b6b6b6] hover:bg-[#fff3dd] hover:text-[orange]'
+      )}
+    >
+      <span className='text-xl'>{item.icon}</span>
+      {item.label}
+    </Link>
+  );
 }
 

@@ -10,7 +10,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     {
         key: 'home',
         label: 'Home',
-        path: '/',
+        path: '/home',
         icon: <HiOutlineHome />
     },
     {

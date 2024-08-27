@@ -19,10 +19,10 @@ function Login() {
             <a href="#">Forgot password?</a>
           </div>
 
-          <button type='submit'><NavLink className='login' to='/layout'>Login</NavLink></button>
+          <button type='submit'><NavLink className='btn' to='/layout'>Login</NavLink></button>
 
-          <div className='register'>
-            <p>Don't have an account? <a href="#">Register</a></p>
+          <div className='nav'>
+            <p>Don't have an account? <NavLink className='nav-link' to='/register'>Sign Up</NavLink></p>
           </div>
         </form>
     </div>

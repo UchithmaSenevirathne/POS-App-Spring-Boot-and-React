@@ -16,7 +16,7 @@ function PopularProducts({products, onAddToCart}) {
         {products.map((product, index) => (
           <BoxWrapper key={index}>
             <div className='flex items-center justify-center w-full h-32 bg-[#EEF2F5] rounded-md'>
-              <img src={product.image} alt={product.name} className='w-40'/>
+              <img src={product.image} alt={product.name} className='w-36'/>
             </div>
             <div className='flex flex-col'>
               <span className='text-black text-[14px] font-semibold pb-1'>{product.name}</span>
