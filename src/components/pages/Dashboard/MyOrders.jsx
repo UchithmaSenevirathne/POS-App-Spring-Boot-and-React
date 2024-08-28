@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import '../../assets/Dashboard.css'
 import {
   HiOutlineClock,
@@ -8,11 +8,19 @@ import {
 import { HiOutlineCursorArrowRays } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
-function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart }) {
+function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClearCart }) {
+  const [order, setOrder] = useState([]);
+  
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  const checkout = () => {
+    setOrder([...order, ...cart]);
+    onClearCart();
+  }
+  
   return (
     <div className="my-orders w-[25rem] bg-white mt-10 py-9 px-10 rounded-md">
       <div className="flex justify-between pb-9">
@@ -78,7 +86,7 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart }) {
         <span className="font-bold">Total</span>
         <span className="font-bold">$ {totalPrice.toFixed(2)}</span>
       </div>
-      <button className="w-full py-2 mt-4 text-white bg-[orange] rounded-md">
+      <button className="w-full py-2 mt-4 text-white bg-[orange] rounded-md" onClick={checkout}>
         Checkout
       </button>
     </div>

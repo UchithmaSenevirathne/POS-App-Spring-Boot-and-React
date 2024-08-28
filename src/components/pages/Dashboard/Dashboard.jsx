@@ -360,6 +360,10 @@ function Dashboard() {
     setCart(cart.filter(item => item.id !== productId));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  }
+
   return (
     <div className="flex h-full gap-10">
       <div className="flex flex-col w-full gap-4">
@@ -381,6 +385,7 @@ function Dashboard() {
         onIncreaseQty = {increaseQty}
         onDecreaseQty = {decreaseQty}
         onRemoveFromCart = {handleRemoveFromCart}
+        onClearCart = {clearCart}
         />
       </div>
     </div>
