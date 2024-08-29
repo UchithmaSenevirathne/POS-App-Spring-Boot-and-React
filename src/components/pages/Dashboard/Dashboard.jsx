@@ -4,8 +4,15 @@ import MyOrders from "./MyOrders";
 import PopularProducts from "./PopularProducts";
 import products from "../../../Product.json";
 import { useState } from "react";
+import AdminDashStartGrid from "./AdminDashStartGrid";
+import SalesChart from "./SalesChart";
+import AdminPopularProducts from "./AdminPopularProducts";
+import RecentOrders from "./RecentOrders";
+import Calender from "./Calender";
+import { useOutletContext } from "react-router-dom";
 
 function Dashboard() {
+  const { role } = useOutletContext();
   const [selectedCategory, setSelectedCategory] = useState("Burger");
 
   //cart
@@ -89,7 +96,7 @@ function Dashboard() {
         name: "Glazed Donuts",
         price: "5.00",
         image: require("../../assets/images/donut/glazeddont.png"),
-      }
+      },
     ],
     Burger: [
       {
@@ -217,7 +224,7 @@ function Dashboard() {
         name: "Orange Juice",
         price: "10.00",
         image: require("../../assets/images/drinks/orange-juice.png"),
-      }
+      },
     ],
     Pizza: [
       {
@@ -343,51 +350,92 @@ function Dashboard() {
 
   // Increase quantity
   const increaseQty = (id) => {
-    setCart(cart.map(item => 
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    ));
+    setCart(
+      cart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
   };
 
   // Decrease quantity
   const decreaseQty = (id) => {
-    setCart(cart.map(item => 
-      item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
-    ));
+    setCart(
+      cart.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
   };
 
   // Remove from cart
   const handleRemoveFromCart = (productId) => {
-    setCart(cart.filter(item => item.id !== productId));
+    setCart(cart.filter((item) => item.id !== productId));
   };
 
   const clearCart = () => {
     setCart([]);
-  }
+  };
 
   return (
     <div className="flex h-full gap-10">
       <div className="flex flex-col w-full gap-4">
-        <div className="w-full">
-          <DashboardStartsGrid
-            categories={categories}
-            setSelectedCategory={setSelectedCategory}
+      {role === 'ADMIN' ?  (
+          <>
+            <div className="w-full">
+              <AdminDashStartGrid
+                categories={categories}
+                setSelectedCategory={setSelectedCategory}
+              />
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <SalesChart />
+              </div>
+              <div className="">
+                <Calender />
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <RecentOrders />
+              </div>
+              <div className="">
+                <AdminPopularProducts
+                  products={products[selectedCategory]}
+                  onAddToCart={handleAddToCart}
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="w-full">
+              <DashboardStartsGrid
+                categories={categories}
+                setSelectedCategory={setSelectedCategory}
+              />
+            </div>
+            <div className="pt-1">
+              <PopularProducts
+                products={products[selectedCategory]}
+                onAddToCart={handleAddToCart}
+              />
+            </div>
+          </>
+        )}
+      </div>
+      {role !== 'ADMIN' &&  (
+        <div className="pr-10">
+          <MyOrders
+            cart={cart}
+            onIncreaseQty={increaseQty}
+            onDecreaseQty={decreaseQty}
+            onRemoveFromCart={handleRemoveFromCart}
+            onClearCart={clearCart}
           />
         </div>
-        <div className="pt-1">
-          <PopularProducts
-            products={products[selectedCategory]}
-            onAddToCart={handleAddToCart}
-          />
-        </div>
-      </div>
-      <div className="pr-10">
-        <MyOrders cart={cart} 
-        onIncreaseQty = {increaseQty}
-        onDecreaseQty = {decreaseQty}
-        onRemoveFromCart = {handleRemoveFromCart}
-        onClearCart = {clearCart}
-        />
-      </div>
+      )}
     </div>
   );
 }

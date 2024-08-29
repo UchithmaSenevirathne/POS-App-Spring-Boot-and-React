@@ -9,11 +9,11 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setEmail('');
-    setPassword('');
-    setError('');
-  }, []); 
+  // useEffect(() => {
+  //   setEmail('');
+  //   setPassword('');
+  //   setError('');
+  // }, []); 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -25,13 +25,13 @@ function Login() {
 
     if (email === 'iman@gmail.com' && password === 'abcd') {
       setError('');
-      navigate('/layout', { state: { role: 'ADMIN' } }); // Pass the role as state
-    } else if (email === 'uchithma@gmail.com' && password === '1234') {
+      navigate('/layout', { state: { role: 'ADMIN' } }); // Admin role
+  } else if (email === 'uchithma@gmail.com' && password === '1234') {
       setError('');
-      navigate('/layout', { state: { role: 'USER' } }); // Pass the role as state
-    } else {
+      navigate('/layout', { state: { role: 'USER' } }); // User role
+  } else {
       setError('Invalid email or password.');
-    }
+  }
   }
   
   return (
