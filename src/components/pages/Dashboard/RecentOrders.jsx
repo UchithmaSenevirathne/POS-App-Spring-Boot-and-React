@@ -51,27 +51,17 @@ const recentOrderData = [
         order_total: '$876.00',
         current_order_status: 'OUT_FOR_DELIVERY',
         shipment_address: 'San Mateo, CA 94403'
-    },
-    {
-        id: '5',
-        product_id: '5627',
-        customer_id: '97632',
-        customer_name: 'Ryan Carroll',
-        order_date: '2022-05-14T05:24:00',
-        order_total: '$96.35',
-        current_order_status: 'DELIVERED',
-        shipment_address: 'Los Angeles, CA 90017'
     }
 ]
 
 function RecentOrders() {
     return(
-        <div className='flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-sm'>
+        <div className='flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-md'>
             <strong className='font-medium text-gray-700'>Recent Orders</strong>
             <div className='mt-3'>
                 <table className='w-full text-gray-700 border-gray-200 rounded-sm border-x'>
                     <thead>
-                    <tr>
+                    <tr className='bg-[orange] text-white' >
                         <td>ID</td>
                         <td>Product ID</td>
                         <td>Customer Name</td>
@@ -83,18 +73,18 @@ function RecentOrders() {
                     </thead>
                     <tbody>
                         {recentOrderData.map(order=>
-                            <tr key={order.id}>
+                            <tr key={order.id} className='hover:bg-[#fff3dd]'>
                                 <td>
-                                    <Link to={`order/${order.id}`}>#{order.id}</Link>
+                                    <Link to={`order/${order.id}`} className='text-[orange]'>#{order.id}</Link>
                                 </td>
                                 <td>
                                     <Link to={`product/${order.product_id}`}>{order.product_id}</Link>
                                 </td>
                                 <td>
-                                    <Link to={`customer/${order.customer_id}`}>{order.customer_name}</Link>
+                                    <Link to={`customer/${order.customer_id}`} >{order.customer_name}</Link>
                                 </td>
-                                <td>{new Date (order.order_date).toLocaleDateString()}</td>
-                                <td>{order.order_total}</td>
+                                <td >{new Date (order.order_date).toLocaleDateString()}</td>
+                                <td className='text-[orange]'>{order.order_total}</td>
                                 <td>{order.shipment_address}</td>
                                 {/* <td>{getOrderStatus(order.current_order_status)}</td> */}
                             </tr>

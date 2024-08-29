@@ -3,9 +3,9 @@ import { IoBagHandle, IoCalendar, IoCart, IoPeople, IoPieChart } from 'react-ico
 
 function AdminDashStartGrid() {
     return(
-        <div className="flex w-full gap-4">
+        <div className="flex w-full gap-6">
             <BoxWrapper>
-                <div className='flex items-center justify-center w-12 h-12 rounded-full bg-sky-500'>
+                <div className='flex items-center justify-center w-12 h-12 rounded-full bg-[orange]'>
                     <IoBagHandle className='text-2xl text-white'/>
                 </div>
                 <div className='pl-4'>
@@ -17,7 +17,7 @@ function AdminDashStartGrid() {
                 </div>
             </BoxWrapper>
             <BoxWrapper>
-                <div className='flex items-center justify-center w-12 h-12 bg-orange-600 rounded-full'>
+                <div className='flex items-center justify-center w-12 h-12 bg-[orange] rounded-full'>
                     <IoCalendar className='text-2xl text-white' />
                 </div>
                 <div className='pl-4'>
@@ -29,7 +29,7 @@ function AdminDashStartGrid() {
                 </div>
             </BoxWrapper>
             <BoxWrapper>
-                <div className='flex items-center justify-center w-12 h-12 bg-yellow-400 rounded-full'>
+                <div className='flex items-center justify-center w-12 h-12 bg-[orange] rounded-full'>
                     <IoPeople className='text-2xl text-white' />
                 </div>
                 <div className='pl-4'>
@@ -41,7 +41,7 @@ function AdminDashStartGrid() {
                 </div>
             </BoxWrapper>
             <BoxWrapper>
-                <div className='flex items-center justify-center w-12 h-12 bg-green-600 rounded-full'>
+                <div className='flex items-center justify-center w-12 h-12 bg-[orange] rounded-full'>
                     <IoCart className='text-2xl text-white' />
                 </div>
                 <div className='pl-4'>
@@ -59,5 +59,5 @@ function AdminDashStartGrid() {
 export default AdminDashStartGrid;
 
 function BoxWrapper({ children }) {
-    return <div className="flex items-center flex-1 p-4 bg-white border border-gray-200 rounded-sm">{children}</div>
+    return <div className="flex items-center flex-1 p-4 bg-white border border-gray-200 rounded-md">{children}</div>
 }

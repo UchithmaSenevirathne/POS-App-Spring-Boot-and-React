@@ -1,0 +1,33 @@
+/* CSS to make the calendar smaller */
+.small-calendar {
+    width: 330px; /* Adjust the width to make it smaller */
+    font-size: 0.875rem;
+    padding: 0;
+    margin: 0; /* Smaller font size */
+}
+
+/* Adjust the calendar header and body */
+.small-calendar .p-datepicker-header,
+.small-calendar .p-datepicker-calendar {
+    font-size: 0.75rem; /* Smaller header and body font */
+    padding: 0;
+    margin: 0;
+}
+
+.small-calendar .p-datepicker-weeknumber{
+    padding: 0;
+}
+
+/* Custom hover effect */
+.custom-calendar .p-datepicker-calendar td span:hover {
+    background-color: #fff3dd !important; /* Orange background */
+    border-radius: 50%; /* Circular shape */
+}
+
+.custom-calendar .p-datepicker-calendar td{
+    padding: 0;
+}
+
+div::-webkit-scrollbar{
+    display: none;
+}

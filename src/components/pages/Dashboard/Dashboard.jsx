@@ -382,25 +382,25 @@ function Dashboard() {
       <div className="flex flex-col w-full gap-4">
       {role === 'ADMIN' ?  (
           <>
-            <div className="w-full">
+            <div className="w-full pr-10">
               <AdminDashStartGrid
                 categories={categories}
                 setSelectedCategory={setSelectedCategory}
               />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-[30px]">
               <div className="flex-1">
                 <SalesChart />
               </div>
-              <div className="">
+              <div className="pr-10">
                 <Calender />
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-[30px]">
               <div className="flex-1">
                 <RecentOrders />
               </div>
-              <div className="">
+              <div className="pr-10">
                 <AdminPopularProducts
                   products={products[selectedCategory]}
                   onAddToCart={handleAddToCart}
