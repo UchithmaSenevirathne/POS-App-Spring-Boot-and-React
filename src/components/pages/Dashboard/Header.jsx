@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 import { Fragment } from 'react'
 
-export default function Header() {
+export default function Header({ role }) {
     const navigate = useNavigate()
 
     return(

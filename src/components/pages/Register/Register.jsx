@@ -26,7 +26,7 @@ function Register() {
           </div>
         </div>
 
-        <button type="button">
+        <button type="submit">
           <NavLink className="btn" to="/">
             Register
           </NavLink>

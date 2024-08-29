@@ -1,15 +1,17 @@
 import React from 'react'
 import { FcBullish } from 'react-icons/fc'
-import { DASHBOARD_SIDEBAR_LINKS } from '../../../Lib/const/Navigation'
+import { ADMIN_SIDEBAR_LINKS, DASHBOARD_SIDEBAR_LINKS, USER_SIDEBAR_LINKS } from '../../../Lib/const/Navigation'
 import { Link, useLocation } from 'react-router-dom'
 import classNames from 'classnames'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { FaCartShopping } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom'
 
-export default function Sidebar() {
+export default function Sidebar({ role }) {
     const navigate = useNavigate()
     const { pathname } = useLocation();
+
+    const linksToRender = role === 'ADMIN' ? ADMIN_SIDEBAR_LINKS : USER_SIDEBAR_LINKS;
     
   return (
     <div className='flex flex-col p-3 bg-white text-[orange] w-60'>
@@ -18,7 +20,7 @@ export default function Sidebar() {
                 <span className='text-lg font-extrabold text-black'>FOODIE</span>
             </div>
             <div className='flex flex-col flex-1 gap-4 py-8'>
-                {DASHBOARD_SIDEBAR_LINKS.map((item) => (
+                {linksToRender.map((item) => (
                     <SidebarLink key={item.key} item={item} currentPath={pathname}/>
                 ))}
             </div>
