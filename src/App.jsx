@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./components/pages/Login/Login";
@@ -9,10 +10,13 @@ import Profile from "./components/pages/Profile/Profile";
 import Items from "./components/pages/Items/Items";
 
 function App() {
+  const [users, setUsers] = useState([]); // Initialize users state here
+  const [currentUser, setCurrentUser] = useState(null);
+
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/" element={<Login users={users} setCurrentUser={setCurrentUser}/>} />
+      <Route path="/register" element={<Register users={users} setUsers={setUsers}/>} />
       <Route path="/layout" element={<Layout />}>
         {/* Nested routes under the Layout */}
         <Route index element={<Dashboard />} />

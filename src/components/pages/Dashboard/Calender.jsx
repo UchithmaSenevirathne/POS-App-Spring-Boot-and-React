@@ -9,7 +9,7 @@ export default function CalendarComponent() {
     const [date, setDate] = useState(new Date()); // Set initial state to current date
 
     return (
-        <div className="flex px-5 py-6 bg-white rounded-md card justify-content-center">
+        <div className="flex px-5 pt-5 bg-white rounded-md pb-7 card justify-content-center">
             <Calendar 
                 value={date} 
                 onChange={(e) => setDate(e.value)} 

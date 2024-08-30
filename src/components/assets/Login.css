@@ -4,11 +4,12 @@
     text-align: center;
     padding: 30px 40px;
     border-radius: 10px;
-    margin-top: 250px;
 }
 
 .form form > h1 {
     padding: 20px 0 50px 0;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .input-box {
