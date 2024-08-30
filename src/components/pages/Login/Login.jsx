@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/Login.css';
 import { NavLink } from 'react-router-dom';
+import { useUserContext } from '../../../Lib/const/UserContext';
 
 function Login({ users = [], setCurrentUser }) {  // Pass users array as a prop
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setUser } = useUserContext(); // Destructure setUser from useUserContext
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,14 +22,16 @@ function Login({ users = [], setCurrentUser }) {  // Pass users array as a prop
     if (email === 'iman@gmail.com' && password === 'abcd') {
       setError('');
       setCurrentUser({ role: 'ADMIN', profilePic: null, name: 'Admin' });
-      navigate('/layout', { state: { role: 'ADMIN', profilePic: null, name: 'Admin' } }); // Admin role
+      setUser({ role: 'ADMIN', profilePic: null, name: 'Admin' }); // Set user context
+      navigate('/layout'); // Admin role
     } else {
       const user = users.find(user => user.email === email && user.password === password);
 
       if (user) {
         setError('');
         setCurrentUser(user); // Set the logged-in user
-        navigate('/layout', { state: { role: user.role, profilePic: user.profilePic, name: user.fullName } });
+        setUser(user); // Set user context
+        navigate('/layout');
       } else {
         setError('Invalid email or password.');
       }

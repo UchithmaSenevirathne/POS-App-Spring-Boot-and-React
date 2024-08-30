@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../../assets/Login.css';
 import { HiCamera } from "react-icons/hi";
+import { useUserContext } from "../../../Lib/const/UserContext";
 
 function Register({ users, setUsers }) {
   const [fullName, setFullName] = useState('');
@@ -13,6 +14,7 @@ function Register({ users, setUsers }) {
   const [profilePic, setProfilePic] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setUserDetails } = useUserContext(); 
 
   const fileInputRef = useRef(null);
 
@@ -44,6 +46,13 @@ function Register({ users, setUsers }) {
 
     // Update users array
     setUsers([...users, newUser]); // Update the users state
+
+    // Set the user details in context
+    setUserDetails({
+      role: 'USER',
+      profilePic: profilePic ? profilePic : null,
+      name: fullName,  // Set the name to the full name of the registered user
+    });
 
     // Clear the form and navigate to login
     setFullName('');
