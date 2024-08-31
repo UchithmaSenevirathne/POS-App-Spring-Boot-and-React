@@ -31,7 +31,7 @@ export const USER_SIDEBAR_LINKS = [
 export const ADMIN_SIDEBAR_LINKS = [
     {
         key: 'home',
-        label: 'Home',
+        label: 'Dashboard',
         path: '/home',
         icon: <HiOutlineViewGrid />
     },
