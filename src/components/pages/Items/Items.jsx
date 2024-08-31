@@ -101,21 +101,21 @@ function Items() {
       {/* Item List Table */}
       <div className="container">
         <div className="py-4">
-          <table className="table w-full border">
+          <table className="table w-full bg-white border">
             <thead>
-              <tr>
+              <tr className="bg-[orange] text-white">
                 <th scope="col">ID</th>
-                <th scope="col">Image</th>
+                <th scope="col">Item Image</th>
                 <th scope="col">Item Name</th>
                 <th scope="col">Unit Price</th>
-                <th scope="col">Quantity</th>
+                <th scope="col">Item Quantity</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
               {items.map((item, index) => (
                 <tr key={index}>
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row" className="text-blue-400">#{index + 1}</th>
                   <td>
                     {item.imgUrl && (
                       <img src={item.imgUrl} alt="Item" width="50" />
@@ -126,13 +126,13 @@ function Items() {
                   <td>{item.qty}</td>
                   <td>
                     <button
-                      className="mx-2 btn btn-primary"
+                      className="px-3 py-2 mx-2 text-green-700 border border-green-700 rounded-md green-700"
                       onClick={() => handleEdit(index)}
                     >
                       Edit
                     </button>
                     <button
-                      className="mx-2 btn btn-danger"
+                      className="mx-2 btn bg-[red] py-2 px-3 text-white rounded-md"
                       onClick={() => handleDelete(index)}
                     >
                       Delete
@@ -195,7 +195,7 @@ function Items() {
                   {/* Custom button that triggers the hidden file input */}
                   <button
                     type="button"
-                    className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"
+                    className="px-4 py-2 hover:text-white rounded hover:bg-[orange] text-[orange] bg-white border-[orange] border transition-all duration-500"
                     onClick={() => document.getElementById("fileInput").click()}
                   >
                     Choose File
@@ -245,7 +245,7 @@ function Items() {
               {/* Item Details Input Fields */}
               <div className="flex gap-5 mb-3">
                 <label htmlFor="name" className="font-semibold form-label">
-                  Item Name
+                  Item Name :
                 </label>
                 <input
                   type="text"
@@ -257,8 +257,8 @@ function Items() {
                 />
               </div>
               <div className="flex gap-5 mb-3">
-                <label htmlFor="unitPrice" className="font-semibold form-label">
-                  Unit Price
+                <label htmlFor="unitPrice" className="pr-2 font-semibold form-label">
+                  Unit Price :
                 </label>
                 <input
                   type="text"
@@ -270,8 +270,8 @@ function Items() {
                 />
               </div>
               <div className="flex gap-5 mb-3">
-                <label htmlFor="qty" className="font-semibold form-label">
-                  Quantity
+                <label htmlFor="qty" className="pr-4 font-semibold form-label">
+                  Quantity :
                 </label>
                 <input
                   type="text"
@@ -284,13 +284,13 @@ function Items() {
               </div>
 
               {/* Submit and Cancel Buttons */}
-              <div className="flex justify-center gap-5">
-                <button type="submit" className="btn btn-outline-primary">
+              <div className="flex gap-5 mt-5">
+                <button type="submit" className="btn bg-[orange] py-2 px-3 rounded-md text-white w-36">
                   {editingIndex === null ? "Add Item" : "Update Item"}
                 </button>
                 <button
                   type="button"
-                  className="mx-2 btn btn-outline-danger"
+                  className="mx-2 btn border-[orange] border rounded-md py-2 px-3 text-[orange]"
                   onClick={() => {
                     setForm({
                       imageSource: "file",
