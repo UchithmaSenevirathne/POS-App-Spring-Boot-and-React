@@ -13,10 +13,11 @@ import { useOutletContext } from "react-router-dom";
 
 function Dashboard() {
   const { role } = useOutletContext();
-  const [selectedCategory, setSelectedCategory] = useState("Burger");
+  const [selectedCategory, setSelectedCategory] = useState("Thumb");
 
   //cart
   const [cart, setCart] = useState([]);
+  
 
   const categories = [
     {
@@ -310,25 +311,120 @@ function Dashboard() {
     ],
     "Hot dog": [
       {
-        name: "Hot dog",
+        id: 38,
+        name: "Cheese dog",
         price: "7.00",
-        image: require("../../assets/images/hot-dog.png"),
+        image: require("../../assets/images/hotdog/cheesedg.png"),
+      },
+      {
+        id: 39,
+        name: "Corn dog",
+        price: "7.00",
+        image: require("../../assets/images/hotdog/corn-dog.png"),
+      },
+      {
+        id: 40,
+        name: "Michigan Style hotdog",
+        price: "7.00",
+        image: require("../../assets/images/hotdog/michiganstyle.png"),
+      },
+      {
+        id: 41,
+        name: "Vegetarian hotdog",
+        price: "7.00",
+        image: require("../../assets/images/hotdog/vegetarian.png"),
       },
     ],
     Potato: [
       {
-        name: "Potato",
+        id: 42,
+        name: "Potato Chips",
         price: "4.00",
-        image: require("../../assets/images/fries.png"),
+        image: require("../../assets/images/potato/potato-chips.png"),
       },
+      {
+        id: 43,
+        name: "Potato salad with fried eggs",
+        price: "4.00",
+        image: require("../../assets/images/potato/potato-sld-fried-egg.png"),
+      }
     ],
     Veg: [
       {
-        name: "Veg",
+        id: 44,
+        name: "Caesar Salad",
         price: "8.00",
-        image: require("../../assets/images/salad.png"),
+        image: require("../../assets/images/vege/caesar-sld.png"),
       },
+      {
+        id: 45,
+        name: "Spring Rolls",
+        price: "8.00",
+        image: require("../../assets/images/vege/spring-rolls.png"),
+      }
     ],
+    Thumb: [
+      {
+        id: 46,
+        name: "Snow Donuts",
+        price: "5.00",
+        image: require("../../assets/images/donut/snowdont.png"),
+      },
+      {
+        id: 47,
+        name: "Caesar Salad",
+        price: "8.00",
+        image: require("../../assets/images/vege/caesar-sld.png"),
+      },
+      {
+        id: 48,
+        name: "Potato Chips",
+        price: "4.00",
+        image: require("../../assets/images/potato/potato-chips.png"),
+      },
+      {
+        id: 49,
+        name: "Cheese dog",
+        price: "7.00",
+        image: require("../../assets/images/hotdog/cheesedg.png"),
+      },
+      {
+        id: 50,
+        name: "Banana Cake",
+        price: "25.00",
+        image: require("../../assets/images/cake/banana-ck.png"),
+      },
+      {
+        id: 51,
+        name: "Tandoori Chicken Pizza",
+        price: "30.00",
+        image: require("../../assets/images/pizza/tandoorichick-pz.png"),
+      },
+      {
+        id: 52,
+        name: "Lemonade",
+        price: "10.00",
+        image: require("../../assets/images/drinks/lemonade.png"),
+      },
+      {
+        id: 53,
+        name: "Chicken BBQ",
+        price: "20.00",
+        image: require("../../assets/images/chicken/bbqchick.png"),
+      },
+      {
+        id: 54,
+        name: "Vanilla Cream",
+        price: "15.00",
+        image: require("../../assets/images/ice/vanilla.png"),
+      },
+      {
+        id: 55,
+        name: "Mixed Burger",
+        price: "105",
+        image: require("../../assets/images/mixedburg.png"),
+      }
+    ]
   };
 
   //add to cart

@@ -15,6 +15,16 @@ export const UserProvider = ({ children }) => {
     setUser(newUser);
   };
 
+  // Example Logout Function
+// const handleLogout = () => {
+  // Clear user context
+  // setUser({ role: 'USER', profilePic: null, name: 'Guest' });
+  
+  // Navigate to login page or clear localStorage/sessionStorage
+  // navigate('/');
+// };
+
+
   return (
     <UserContext.Provider value={{ user, setUser, setUserDetails }}>
       {children}

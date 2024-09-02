@@ -9,8 +9,10 @@ import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { HiOutlineArrowDown } from "react-icons/hi2";
+import { useUserContext } from "../../../Lib/const/UserContext";
 
 export default function Header({ role, profilePic, name }) {
+  const { user } = useUserContext(); // Destructure user from useUserContext
   const navigate = useNavigate();
 
   return (
@@ -98,7 +100,7 @@ export default function Header({ role, profilePic, name }) {
         {/* Profile Picture and User Name */}
         <Menu as="div" className="relative">
         <div className="flex items-center">
-        <span className="ml-2 font-semibold text-gray-700">{name || 'Guest'}</span>{" "}
+        <span className="ml-2 font-semibold text-gray-700">{user.name || 'Guest'}</span>{" "}
             <Menu.Button className="flex ml-2 text-sm  rounded-full focus:outline-none focus:ring-2 focus:ring-[#fff3dd]">
               <span className="sr-only">Open user menu</span>
               <div
