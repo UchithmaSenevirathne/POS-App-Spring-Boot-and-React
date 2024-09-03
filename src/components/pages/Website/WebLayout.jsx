@@ -7,7 +7,7 @@ import Contact from './Contact'
 
 function WebLayout() {
   return (
-    <div>
+    <div className='flex flex-col w-screen h-screen overflow-hidden'>
       <Navbar/>
       <Home/>
       <Menu/>

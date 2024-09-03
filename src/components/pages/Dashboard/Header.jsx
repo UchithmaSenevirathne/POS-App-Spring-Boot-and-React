@@ -156,7 +156,7 @@ export default function Header({ role, profilePic, name }) {
               <Menu.Item>
                 {({ active }) => (
                   <div
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/login")}
                     className={classNames(
                       active && "bg-[#fff3dd]",
                       "active:bg-[#fff3dd] rounded-md px-4 py-2 text-gray-700 cursor-pointer focus:bg-[#fff3dd] transition-all duration-500"

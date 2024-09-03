@@ -27,7 +27,7 @@ export default function Sidebar({ role }) {
                     className={classNames(
                         'text-red-500 cursor-pointer flex items-center gap-2 font-normal px-6 py-2 hover:no-underline text-base'
                     )}
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/login')}
                 >
                     <span className='text-xl'><HiOutlineLogout /></span>
                     Logout
