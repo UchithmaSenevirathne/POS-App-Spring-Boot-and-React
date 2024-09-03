@@ -9,6 +9,7 @@ import Orders from "./components/pages/Order/Orders";
 import Profile from "./components/pages/Profile/Profile";
 import Items from "./components/pages/Items/Items";
 import { UserProvider } from "./Lib/const/UserContext";
+import WebLayout from "./components/pages/Website/WebLayout";
 
 function App() {
   const [users, setUsers] = useState([]); // Initialize users state here
@@ -18,8 +19,9 @@ function App() {
     <UserProvider>
       <Routes>
         {/* Public Routes */}
+        <Route path="/" element={<WebLayout/>}/>
         <Route
-          path="/"
+          path="/login"
           element={<Login users={users} setCurrentUser={setCurrentUser} />}
         />
         <Route

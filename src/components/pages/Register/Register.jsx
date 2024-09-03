@@ -64,7 +64,7 @@ function Register({ users, setUsers }) {
     setProfilePic(null);
     setError('');
 
-    navigate('/');
+    navigate('/login');
   };
 
   return (
@@ -121,7 +121,7 @@ function Register({ users, setUsers }) {
         <button type="submit" className="btn">Register</button>
 
         <div className="nav">
-          <p>Already have an account? <NavLink className='nav-link' to='/'>Sign In</NavLink></p>
+          <p>Already have an account? <NavLink className='nav-link' to='/login'>Sign In</NavLink></p>
         </div>
       </form>
     </div>
