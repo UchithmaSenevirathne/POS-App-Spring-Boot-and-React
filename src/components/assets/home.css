@@ -1,0 +1,6 @@
+.text-after::after {
+    background-image: url(../assets/images/web/home/smallrings.png);
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}

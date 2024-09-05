@@ -4,13 +4,15 @@ import Home from './Home'
 import Menu from './Menu'
 import About from './About'
 import Contact from './Contact'
+import MidBanner from './MidBanner'
 
 function WebLayout() {
   return (
-    <div className='flex flex-col w-screen h-screen overflow-hidden'>
-      <Navbar/>
+    <div className='flex flex-col h-screen px-0 mx-0 max-w-screen'>
+      <Navbar className=''/>
       <Home/>
       <Menu/>
+      <MidBanner/>
       <About/>
       <Contact/>
     </div>

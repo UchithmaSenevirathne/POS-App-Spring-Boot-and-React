@@ -1,0 +1,15 @@
+.middleimg {
+    position: relative;
+    filter: brightness(0.7); /* Adjust brightness to darken the image */
+  }
+  
+  .middleimg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.719); /* Overlay with opacity */
+    z-index: 1;
+  }

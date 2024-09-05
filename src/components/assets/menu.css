@@ -1,0 +1,5 @@
+.bg-img {
+   background-image: url(../assets/images/web/menu/menubg.webp);
+   background-size: cover;
+   object-fit: cover;
+}
