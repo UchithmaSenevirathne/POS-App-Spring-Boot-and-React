@@ -5,6 +5,7 @@ import Menu from './Menu'
 import About from './About'
 import Contact from './Contact'
 import MidBanner from './MidBanner'
+import Footer from './Footer'
 
 function WebLayout() {
   return (
@@ -12,9 +13,10 @@ function WebLayout() {
       <Navbar className=''/>
       <Home/>
       <Menu/>
-      <MidBanner/>
+      <MidBanner className=''/>
       <About/>
       <Contact/>
+      <Footer/>
     </div>
   )
 }
