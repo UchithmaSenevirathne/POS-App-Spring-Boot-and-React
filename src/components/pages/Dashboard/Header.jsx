@@ -11,7 +11,7 @@ import { Fragment } from "react";
 import { HiOutlineArrowDown } from "react-icons/hi2";
 import { useUserContext } from "../../../Lib/const/UserContext";
 
-export default function Header({ role, profilePic, name }) {
+export default function Header({ role, profilePic }) {
   const { user } = useUserContext(); // Destructure user from useUserContext
   const navigate = useNavigate();
 
@@ -112,7 +112,7 @@ export default function Header({ role, profilePic, name }) {
                   })`,
                 }}
               >
-                <span className="sr-only">{name}</span>
+                <span className="sr-only">{user.name}</span>
               </div>
             </Menu.Button>
             {/* Display user or admin name */}
