@@ -31,6 +31,13 @@ function Login({ users = [], setCurrentUser }) {  // Pass users array as a prop
         setError('');
         setCurrentUser(user); // Set the logged-in user
         setUser(user); // Set user context
+
+         // Retrieve the stored user data
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      if (storedUser && storedUser.email === email) {
+        setUser({ ...user, name: storedUser.fullName });
+      }
+      
         navigate('/layout');
       } else {
         setError('Invalid email or password.');
