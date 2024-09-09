@@ -44,6 +44,9 @@ function Register({ users, setUsers }) {
       role: 'USER'
     };
 
+    // Save user data to localStorage
+  localStorage.setItem('user', JSON.stringify({ fullName, email }));
+
     // Update users array
     setUsers([...users, newUser]); // Update the users state
 
