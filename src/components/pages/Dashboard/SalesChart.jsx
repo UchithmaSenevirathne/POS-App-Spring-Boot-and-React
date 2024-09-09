@@ -18,13 +18,11 @@ const data = [
 
 function SalesChart() {
     return (
-        <div className="h-[22rem] bg-white p-4 rounded-md border border-gray-200 flex flex-col flex-1">
+        <div className="h-[20rem] bg-white p-4 rounded-md border border-gray-200 flex flex-col flex-1">
             <strong className="font-medium text-gray-700">Monthly Sales & Orders</strong>
             <div className="flex-1 w-full mt-3 text-xs">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height={250}>
                     <LineChart
-                        width={500}
-                        height={300}
                         data={data}
                         margin={{
                             top: 20,

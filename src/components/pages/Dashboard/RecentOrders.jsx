@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const recentOrderData = [
     {
         id: '1',
-        product_id: '4324',
+        product_id: '3',
         customer_id: '23143',
         customer_name: 'Shirley A. Lape',
         order_date: '2022-05-17T03:24:00',
@@ -14,7 +14,7 @@ const recentOrderData = [
     },
     {
         id: '7',
-        product_id: '7453',
+        product_id: '7',
         customer_id: '96453',
         customer_name: 'Ryan Carroll',
         order_date: '2022-05-14T05:24:00',
@@ -24,7 +24,7 @@ const recentOrderData = [
     },
     {
         id: '2',
-        product_id: '5434',
+        product_id: '4',
         customer_id: '65345',
         customer_name: 'Mason Nash',
         order_date: '2022-05-17T07:14:00',
@@ -34,7 +34,7 @@ const recentOrderData = [
     },
     {
         id: '3',
-        product_id: '9854',
+        product_id: '9',
         customer_id: '87832',
         customer_name: 'Luke Parkin',
         order_date: '2022-05-16T12:40:00',
@@ -44,7 +44,7 @@ const recentOrderData = [
     },
     {
         id: '4',
-        product_id: '8763',
+        product_id: '8',
         customer_id: '09832',
         customer_name: 'Anthony Fry',
         order_date: '2022-05-14T03:24:00',
@@ -58,16 +58,16 @@ function RecentOrders() {
     return(
         <div className='flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-md'>
             <strong className='font-medium text-gray-700'>Recent Orders</strong>
-            <div className='mt-3'>
+            <div className='mt-3 max-h-[250px] overflow-y-auto'>
                 <table className='w-full text-gray-700 border-gray-200 rounded-sm border-x'>
                     <thead>
                     <tr className='bg-[orange] text-white' >
                         <td>ID</td>
-                        <td>Product ID</td>
+                        <td>Items QTY</td>
                         <td>Customer Name</td>
                         <td>Order Date</td>
                         <td>Order Total</td>
-                        <td>Shipping Address</td>
+                        <td>Deliver Address</td>
                         {/* <td>Order Status</td> */}
                     </tr>
                     </thead>
@@ -80,9 +80,7 @@ function RecentOrders() {
                                 <td>
                                     <Link to={`product/${order.product_id}`}>{order.product_id}</Link>
                                 </td>
-                                <td>
-                                    <Link to={`customer/${order.customer_id}`} >{order.customer_name}</Link>
-                                </td>
+                                <td className='text-[#249cff]'>{order.customer_name}</td>
                                 <td >{new Date (order.order_date).toLocaleDateString()}</td>
                                 <td className='text-[orange]'>{order.order_total}</td>
                                 <td>{order.shipment_address}</td>

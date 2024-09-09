@@ -46,7 +46,7 @@ const popularProductsData = [
 
 function AdminPopularProducts() {
     return(
-        <div className='bg-white px-4 pt-3 pb-4 rounded-md border border-gray-200 w-[23rem]'>
+        <div className='bg-white px-4 pt-3 pb-4 rounded-md border border-gray-200 w-[23rem] max-h-[310px] overflow-y-auto'>
             <strong className='font-medium text-gray-700'>Popular Products</strong>
             <div className='flex flex-col gap-3 mt-4'>
                 {popularProductsData.map(product => (
