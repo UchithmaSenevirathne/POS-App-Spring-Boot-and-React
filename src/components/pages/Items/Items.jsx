@@ -445,6 +445,7 @@ function Items() {
 
   const handleDelete = async (index) => {
     const id = items[index].itemId;
+    console.log(id);
     try {
       await axios.delete(`${API_URL}/${id}`);
       setItems(items.filter((_, i) => i !== index)); // Update state
