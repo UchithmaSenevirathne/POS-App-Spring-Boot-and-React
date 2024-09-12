@@ -9,7 +9,7 @@ export default function Sidebar({ role }) {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    const linksToRender = role === 'ADMIN' ? ADMIN_SIDEBAR_LINKS : USER_SIDEBAR_LINKS;
+    const linksToRender = role === 'ADM' ? ADMIN_SIDEBAR_LINKS : USER_SIDEBAR_LINKS;
 
     return (
         <div className='flex flex-col p-3 bg-white text-[orange] w-60'>

@@ -476,7 +476,7 @@ function Dashboard() {
   return (
     <div className="flex h-full gap-10">
       <div className="flex flex-col w-full gap-4">
-      {role === 'ADMIN' ?  (
+      {role === 'ADM' ?  (
           <>
             <div className="w-full pr-10">
               <AdminDashStartGrid
@@ -521,7 +521,7 @@ function Dashboard() {
           </>
         )}
       </div>
-      {role !== 'ADMIN' &&  (
+      {role !== 'ADM' &&  (
         <div className="pr-10">
           <MyOrders
             cart={cart}

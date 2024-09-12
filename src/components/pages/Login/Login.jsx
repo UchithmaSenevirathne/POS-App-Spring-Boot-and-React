@@ -108,7 +108,9 @@ function Login({ setCurrentUser }) {
 
       // If login is successful, extract token and email from the response
       if (response.status === 201) {
-        const { token, email: loggedInEmail } = response.data.data;
+        const { token, email: loggedInEmail, role } = response.data.data;
+
+        console.log(role)
 
         // Fetch user details from the backend using the email
         const userDetailsResponse = await axios.get(
@@ -128,7 +130,7 @@ function Login({ setCurrentUser }) {
             email: loggedInEmail,
             name: fullName,
             profilePic: profilePicture ? `data:image/jpeg;base64,${profilePicture}` : null, // Assuming base64 encoding
-            role: 'USER',
+            role: role
           };
 
           // Update UserContext and local state
