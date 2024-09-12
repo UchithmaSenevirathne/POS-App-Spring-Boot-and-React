@@ -16,6 +16,20 @@ function Items() {
   });
   const [editingIndex, setEditingIndex] = useState(null);
 
+  useEffect(() => {
+    // Fetch all items when the component mounts
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    try {
+      const response = await axios.get(API_URL);
+      setItems(response.data);
+    } catch (error) {
+      console.error("Error fetching items", error);
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
