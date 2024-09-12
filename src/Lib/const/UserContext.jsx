@@ -3,27 +3,16 @@ import React, { createContext, useContext, useState } from 'react';
 // Create a Context
 const UserContext = createContext();
 
-// Create a custom hook to use the UserContext
+// Custom hook to use the UserContext
 export const useUserContext = () => useContext(UserContext);
 
-// Create a Provider Component
+// Provider Component
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({ role: 'USER', profilePic: null, name: 'Guest' });
 
-  // Function to update the user details
   const setUserDetails = (newUser) => {
     setUser(newUser);
   };
-
-  // Example Logout Function
-// const handleLogout = () => {
-  // Clear user context
-  // setUser({ role: 'USER', profilePic: null, name: 'Guest' });
-  
-  // Navigate to login page or clear localStorage/sessionStorage
-  // navigate('/');
-// };
-
 
   return (
     <UserContext.Provider value={{ user, setUser, setUserDetails }}>
