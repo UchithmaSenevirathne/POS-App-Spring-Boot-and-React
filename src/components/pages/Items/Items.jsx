@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { HiOutlineX } from "react-icons/hi";
+import axios from "axios";
+
+const API_URL = "http://localhost:8080/backend/item";
 
 function Items() {
   const [items, setItems] = useState([]);
