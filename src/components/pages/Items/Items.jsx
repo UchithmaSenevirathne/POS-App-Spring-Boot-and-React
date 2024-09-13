@@ -336,10 +336,12 @@ function Items() {
     qty: "",
   });
   const [editingIndex, setEditingIndex] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     // Fetch all items when the component mounts
     fetchItems();
+    fetchCategories();
   }, []);
 
   const fetchItems = async () => {
@@ -348,6 +350,17 @@ function Items() {
       setItems(response.data);
     } catch (error) {
       console.error("Error fetching items", error);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/backend/category"
+      );
+      setCategories(response.data);
+    } catch (error) {
+      console.error("Error fetching categories", error);
     }
   };
 
@@ -393,6 +406,7 @@ function Items() {
     formData.append("itemName", form.name);
     formData.append("unitPrice", form.unitPrice);
     formData.append("itemQty", form.qty);
+    formData.append("categoryId", form.category);
     if (form.imgFile) {
       formData.append("itemImage", form.imgFile);
     } else {
@@ -409,10 +423,10 @@ function Items() {
         });
       } else {
         // Update existing item
-      const id = items[editingIndex].itemId;
-      await axios.put(`${API_URL}/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+        const id = items[editingIndex].itemId;
+        await axios.put(`${API_URL}/${id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       }
       // Reset the form and fetch updated items
       setForm({
@@ -625,6 +639,22 @@ function Items() {
                 value={form.qty}
                 onChange={handleInputChange}
               />
+              {/* Category dropdown */}
+              <select
+                name="category"
+                value={form.category || ""}
+                onChange={handleInputChange}
+                className="h-10 px-5 border rounded-md form-control"
+              >
+                <option value="" disabled>
+                  Select Category
+                </option>
+                {categories.map((category) => (
+                  <option key={category.catId} value={category.catId}>
+                    {category.catName}
+                  </option>
+                ))}
+              </select>
               <div className="flex">
                 <button
                   type="submit"
