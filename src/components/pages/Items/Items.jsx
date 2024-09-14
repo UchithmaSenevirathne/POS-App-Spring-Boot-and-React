@@ -651,8 +651,8 @@ function Items() {
                   Select Category
                 </option>
                 {categories.map((category) => (
-                  <option key={category.catId} value={category.catId}>
-                    {category.catName}
+                  <option key={category.cat_id} value={category.cat_id}>
+                    {category.cat_name}
                   </option>
                 ))}
               </select>
