@@ -337,6 +337,7 @@ function Items() {
   });
   const [editingIndex, setEditingIndex] = useState(null);
   const [categories, setCategories] = useState([]);
+  
 
   useEffect(() => {
     // Fetch all items when the component mounts
@@ -355,16 +356,14 @@ function Items() {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/backend/category"
-      );
+      const response = await axios.get('http://localhost:8080/backend/category');
       setCategories(response.data);
     } catch (error) {
       console.error("Error fetching categories", error);
     }
   };
 
-  const handleInputChange = (e) => {
+   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
       ...prevForm,
@@ -436,6 +435,7 @@ function Items() {
         name: "",
         unitPrice: "",
         qty: "",
+        category: "", // Reset category
       });
       setEditingIndex(null);
       fetchItems(); // Ensure this function is called
@@ -644,7 +644,7 @@ function Items() {
                 name="category"
                 value={form.category || ""}
                 onChange={handleInputChange}
-                className="h-10 px-5 border rounded-md form-control"
+                className="h-10 px-5 border rounded-md form-control text-[#999999]"
               >
                 <option value="" disabled>
                   Select Category
