@@ -334,6 +334,7 @@ function Items() {
     name: "",
     unitPrice: "",
     qty: "",
+    category: "",  // Initialize category field
   });
   const [editingIndex, setEditingIndex] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -341,8 +342,8 @@ function Items() {
 
   useEffect(() => {
     // Fetch all items when the component mounts
-    fetchItems();
     fetchCategories();
+    fetchItems();
   }, []);
 
   const fetchItems = async () => {
