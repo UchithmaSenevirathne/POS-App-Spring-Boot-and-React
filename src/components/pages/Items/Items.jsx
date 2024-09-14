@@ -447,6 +447,15 @@ function Items() {
 
   const handleEdit = (index) => {
     const item = items[index];
+    console.log(categories)
+    console.log("Items:", items)
+    console.log(item.categoryId);
+    const selectedCategory = categories.find(
+      (category) => category.cat_id === item.categoryId // Find category by ID
+    );
+
+    console.log("Selected Category:", selectedCategory);
+    
     setForm({
       imageSource: item.itemImage ? "url" : "file",
       imgFile: null,
@@ -454,6 +463,7 @@ function Items() {
       name: item.itemName,
       unitPrice: item.itemPrice,
       qty: item.itemQuantity,
+      category: selectedCategory ? selectedCategory.cat_id : "",
     });
     setEditingIndex(index);
   };
@@ -643,11 +653,11 @@ function Items() {
               {/* Category dropdown */}
               <select
                 name="category"
-                value={form.category || ""}
+                value={form.category}
                 onChange={handleInputChange}
                 className="h-10 px-5 border rounded-md form-control text-[#999999]"
               >
-                <option value="" disabled>
+                <option value="" >
                   Select Category
                 </option>
                 {categories.map((category) => (
@@ -674,6 +684,7 @@ function Items() {
                       name: "",
                       unitPrice: "",
                       qty: "",
+                      category: "",
                     });
                     setEditingIndex(null);
                   }}
