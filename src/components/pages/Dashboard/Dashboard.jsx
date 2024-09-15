@@ -50,20 +50,20 @@ function Dashboard() {
   //add to cart
   const handleAddToCart = (itemId) => {
     // Fetch the item details from the backend using axios
-  axios.get(`http://localhost:8080/backend/items/${itemId}`)
+  axios.get(`http://localhost:8080/backend/item/${itemId}`)
   .then(response => {
     const product = response.data;
-    const existingProduct = cart.find((item) => item.id === product.id);
-
+    const existingProduct = cart.find((item) => item.itemId === product.itemId);
     if (existingProduct) {
       setCart(
         cart.map((item) =>
-          item.id === product.id
+          item.itemId === product.itemId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
       );
     } else {
+      console.log(product)
       setCart([...cart, { ...product, quantity: 1 }]);
     }
   })
@@ -80,7 +80,7 @@ function Dashboard() {
   const increaseQty = (id) => {
     setCart(
       cart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        item.itemId === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
@@ -89,7 +89,7 @@ function Dashboard() {
   const decreaseQty = (id) => {
     setCart(
       cart.map((item) =>
-        item.id === id && item.quantity > 1
+        item.itemId === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -98,7 +98,7 @@ function Dashboard() {
 
   // Remove from cart
   const handleRemoveFromCart = (productId) => {
-    setCart(cart.filter((item) => item.id !== productId));
+    setCart(cart.filter((item) => item.itemId !== productId));
   };
 
   const clearCart = () => {
