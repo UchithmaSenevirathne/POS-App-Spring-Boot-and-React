@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import '../../assets/Dashboard.css'
 import {
   HiOutlineClock,
@@ -20,6 +20,29 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
     setOrder([...order, ...cart]);
     onClearCart();
   }
+
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const period = hours >= 12 ? "PM" : "AM";
+
+      // Convert hours from 24-hour to 12-hour format
+      const formattedHours = hours % 12 || 12;
+      const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+      setTime(`${formattedHours}.${formattedMinutes} ${period}`);
+    };
+
+    // Update time immediately and then every minute
+    updateTime();
+    const timerId = setInterval(updateTime, 60000); // Update every 60 seconds
+
+    return () => clearInterval(timerId); // Cleanup interval on component unmount
+  }, []);
   
   return (
     <div className="my-orders w-[25rem] bg-white mt-10 py-9 px-10 rounded-md">
@@ -32,19 +55,9 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
             <HiOutlineClock className="text-[orange] text-[20px]" />
           </div>
           <div>
-            <p className="text-[14px] font-semibold">09.00 AM</p>
+            <p className="text-[14px] font-semibold">{time}</p>
           </div>
         </div>
-        {/* <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-10 h-10 bg-[#fff3dd] rounded-md">
-            <HiOutlineLocationMarker className="text-[orange] text-[20px]" />
-          </div>
-          <div>
-            <p className="text-[14px] font-semibold">
-              1234 Colombo Road, Galle
-            </p>
-          </div>
-        </div> */}
       </div>
       <hr />
       <div className="overflow-y-auto py-9 cart max-h-52" >

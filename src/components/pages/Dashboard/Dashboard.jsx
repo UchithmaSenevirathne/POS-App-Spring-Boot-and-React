@@ -14,367 +14,12 @@ import axios from 'axios';
 
 function Dashboard() {
   const { role } = useOutletContext();
-  const [selectedCategory, setSelectedCategory] = useState("Thumb");
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [products, setProducts] = useState([]);
   //cart
   const [cart, setCart] = useState([]);
-
-  const products = {
-    Donuts: [
-      {
-        id: 1,
-        name: "Almond Donuts",
-        price: "5.00",
-        image: require("../../assets/images/donut/almonddont.png"),
-      },
-      {
-        id: 2,
-        name: "Apple Cider Donuts",
-        price: "5.00",
-        image: require("../../assets/images/donut/appleciderdont.png"),
-      },
-      {
-        id: 3,
-        name: "Snow Donuts",
-        price: "5.00",
-        image: require("../../assets/images/donut/snowdont.png"),
-      },
-      {
-        id: 4,
-        name: "Glazed Donuts",
-        price: "5.00",
-        image: require("../../assets/images/donut/glazeddont.png"),
-      },
-    ],
-    Burger: [
-      {
-        id: 5,
-        name: "Bean Burger",
-        price: "105",
-        image: require("../../assets/images/beanburg.png"),
-      },
-      {
-        id: 6,
-        name: "Cheese Burger",
-        price: "105",
-        image: require("../../assets/images/cheeseburg.png"),
-      },
-      {
-        id: 7,
-        name: "Mixed Burger",
-        price: "105",
-        image: require("../../assets/images/mixedburg.png"),
-      },
-      {
-        id: 8,
-        name: "Vegetable Burger",
-        price: "105",
-        image: require("../../assets/images/vegburg.png"),
-      },
-      {
-        id: 9,
-        name: "Salmon Burger",
-        price: "105",
-        image: require("../../assets/images/salmburg.png"),
-      },
-      {
-        id: 10,
-        name: "Meat Burger",
-        price: "105",
-        image: require("../../assets/images/meatburg.png"),
-      },
-      {
-        id: 11,
-        name: "Lamb Burger",
-        price: "105",
-        image: require("../../assets/images/lambBurg.png"),
-      },
-      {
-        id: 12,
-        name: "Mushroom-Beef Burger",
-        price: "105",
-        image: require("../../assets/images/beefBurg.png"),
-      },
-    ],
-    "Ice Cream": [
-      {
-        id: 13,
-        name: "Chocolate Ice Cream",
-        price: "15.00",
-        image: require("../../assets/images/ice/chocolate.png"),
-      },
-      {
-        id: 14,
-        name: "Black Berry Ice Cream",
-        price: "15.00",
-        image: require("../../assets/images/ice/blckberry.png"),
-      },
-      {
-        id: 15,
-        name: "Vanilla Cream",
-        price: "15.00",
-        image: require("../../assets/images/ice/vanilla.png"),
-      },
-      {
-        id: 16,
-        name: "Mixed Ice Cream",
-        price: "15.00",
-        image: require("../../assets/images/ice/mixed.png"),
-      },
-    ],
-    Chicken: [
-      {
-        id: 17,
-        name: "Baked Chicken",
-        price: "20.00",
-        image: require("../../assets/images/chicken/backedchick.png"),
-      },
-      {
-        id: 18,
-        name: "Chicken BBQ",
-        price: "20.00",
-        image: require("../../assets/images/chicken/bbqchick.png"),
-      },
-      {
-        id: 19,
-        name: "Chop Salad with Grilled Chicken",
-        price: "20.00",
-        image: require("../../assets/images/chicken/chopsaladwithgrilledchick.png"),
-      },
-      {
-        id: 20,
-        name: "Crispy Chicken",
-        price: "20.00",
-        image: require("../../assets/images/chicken/crispychick.png"),
-      },
-    ],
-    Drinks: [
-      {
-        id: 21,
-        name: "Chocolate Shake",
-        price: "10.00",
-        image: require("../../assets/images/drinks/chocolate-shake.png"),
-      },
-      {
-        id: 22,
-        name: "Fruit Ice Tea",
-        price: "10.00",
-        image: require("../../assets/images/drinks/fruit-ice-tea.png"),
-      },
-      {
-        id: 23,
-        name: "Lemonade",
-        price: "10.00",
-        image: require("../../assets/images/drinks/lemonade.png"),
-      },
-      {
-        id: 24,
-        name: "Orange Juice",
-        price: "10.00",
-        image: require("../../assets/images/drinks/orange-juice.png"),
-      },
-    ],
-    Pizza: [
-      {
-        id: 25,
-        name: "Beef Pepperoni Pizza",
-        price: "30.00",
-        image: require("../../assets/images/pizza/beefpepperoni-pz.png"),
-      },
-      {
-        id: 26,
-        name: "Cheese Lovers",
-        price: "30.00",
-        image: require("../../assets/images/pizza/cheeselovers-pz.png"),
-      },
-      {
-        id: 27,
-        name: "Cheesy Onion and Green Chilly",
-        price: "30.00",
-        image: require("../../assets/images/pizza/cheesyoniongreenchilly-pz.png"),
-      },
-      {
-        id: 28,
-        name: "Double Chicken Surprise",
-        price: "30.00",
-        image: require("../../assets/images/pizza/doublechicksurprise-pz.png"),
-      },
-      {
-        id: 29,
-        name: "Seafood Treat Pizza",
-        price: "30.00",
-        image: require("../../assets/images/pizza/seafoodtreat-pz.png"),
-      },
-      {
-        id: 30,
-        name: "Spicy Fish Pizza",
-        price: "30.00",
-        image: require("../../assets/images/pizza/spicy-fish-pz.png"),
-      },
-      {
-        id: 31,
-        name: "Tandoori Chicken Pizza",
-        price: "30.00",
-        image: require("../../assets/images/pizza/tandoorichick-pz.png"),
-      },
-      {
-        id: 32,
-        name: "Veggie Masala Pizza",
-        price: "30.00",
-        image: require("../../assets/images/pizza/veggie-masala-pz.png"),
-      },
-    ],
-    Cakes: [
-      {
-        id: 33,
-        name: "Banana Cake",
-        price: "25.00",
-        image: require("../../assets/images/cake/banana-ck.png"),
-      },
-      {
-        id: 34,
-        name: "Blueberry Friands Cake",
-        price: "25.00",
-        image: require("../../assets/images/cake/blueberry-friands-ck.png"),
-      },
-      {
-        id: 35,
-        name: "Chocolate Coconut Cake",
-        price: "25.00",
-        image: require("../../assets/images/cake/choco-coconut-ck.png"),
-      },
-      {
-        id: 36,
-        name: "Lemon Yoghurt Cake",
-        price: "25.00",
-        image: require("../../assets/images/cake/lemon-yoghurt-ck.png"),
-      },
-      {
-        id: 37,
-        name: "Orange Almond Cake",
-        price: "25.00",
-        image: require("../../assets/images/cake/orange-almond-ck.png"),
-      },
-    ],
-    "Hot dog": [
-      {
-        id: 38,
-        name: "Cheese dog",
-        price: "7.00",
-        image: require("../../assets/images/hotdog/cheesedg.png"),
-      },
-      {
-        id: 39,
-        name: "Corn dog",
-        price: "7.00",
-        image: require("../../assets/images/hotdog/corn-dog.png"),
-      },
-      {
-        id: 40,
-        name: "Michigan Style hotdog",
-        price: "7.00",
-        image: require("../../assets/images/hotdog/michiganstyle.png"),
-      },
-      {
-        id: 41,
-        name: "Vegetarian hotdog",
-        price: "7.00",
-        image: require("../../assets/images/hotdog/vegetarian.png"),
-      },
-    ],
-    Potato: [
-      {
-        id: 42,
-        name: "Potato Chips",
-        price: "4.00",
-        image: require("../../assets/images/potato/potato-chips.png"),
-      },
-      {
-        id: 43,
-        name: "Potato salad with fried eggs",
-        price: "4.00",
-        image: require("../../assets/images/potato/potato-sld-fried-egg.png"),
-      }
-    ],
-    Veg: [
-      {
-        id: 44,
-        name: "Caesar Salad",
-        price: "8.00",
-        image: require("../../assets/images/vege/caesar-sld.png"),
-      },
-      {
-        id: 45,
-        name: "Spring Rolls",
-        price: "8.00",
-        image: require("../../assets/images/vege/spring-rolls.png"),
-      }
-    ],
-    Thumb: [
-      {
-        id: 46,
-        name: "Snow Donuts",
-        price: "5.00",
-        image: require("../../assets/images/donut/snowdont.png"),
-      },
-      {
-        id: 47,
-        name: "Caesar Salad",
-        price: "8.00",
-        image: require("../../assets/images/vege/caesar-sld.png"),
-      },
-      {
-        id: 48,
-        name: "Potato Chips",
-        price: "4.00",
-        image: require("../../assets/images/potato/potato-chips.png"),
-      },
-      {
-        id: 49,
-        name: "Cheese dog",
-        price: "7.00",
-        image: require("../../assets/images/hotdog/cheesedg.png"),
-      },
-      {
-        id: 50,
-        name: "Banana Cake",
-        price: "25.00",
-        image: require("../../assets/images/cake/banana-ck.png"),
-      },
-      {
-        id: 51,
-        name: "Tandoori Chicken Pizza",
-        price: "30.00",
-        image: require("../../assets/images/pizza/tandoorichick-pz.png"),
-      },
-      {
-        id: 52,
-        name: "Lemonade",
-        price: "10.00",
-        image: require("../../assets/images/drinks/lemonade.png"),
-      },
-      {
-        id: 53,
-        name: "Chicken BBQ",
-        price: "20.00",
-        image: require("../../assets/images/chicken/bbqchick.png"),
-      },
-      {
-        id: 54,
-        name: "Vanilla Cream",
-        price: "15.00",
-        image: require("../../assets/images/ice/vanilla.png"),
-      },
-      {
-        id: 55,
-        name: "Mixed Burger",
-        price: "105",
-        image: require("../../assets/images/mixedburg.png"),
-      }
-    ]
-  };
 
    // Fetch categories from backend
    useEffect(() => {
@@ -388,9 +33,19 @@ function Dashboard() {
       });
   }, []);
 
-  if (loading) {
-    return <div>Loading categories...</div>;
-  }
+  // Fetch products when a category is selected
+  useEffect(() => {
+    console.log("select cat id ", selectedCategory)
+    if (selectedCategory) {
+      axios.get(`http://localhost:8080/backend/category/items/${selectedCategory}`)
+        .then(response => {
+          setProducts(response.data);
+        })
+        .catch(error => {
+          console.error("Error fetching products for category:", error);
+        });
+    }
+  }, [selectedCategory]);
 
   //add to cart
   const handleAddToCart = (product) => {
@@ -408,6 +63,10 @@ function Dashboard() {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
   };
+
+  if (loading) {
+    return <div>Loading categories...</div>;
+  }
 
   // Increase quantity
   const increaseQty = (id) => {
@@ -463,7 +122,7 @@ function Dashboard() {
               </div>
               <div className="pr-10">
                 <AdminPopularProducts
-                  products={products[selectedCategory]}
+                  products={products}
                   onAddToCart={handleAddToCart}
                 />
               </div>
@@ -479,7 +138,7 @@ function Dashboard() {
             </div>
             <div className="pt-1">
               <PopularProducts
-                products={products[selectedCategory]}
+                products={products}
                 onAddToCart={handleAddToCart}
               />
             </div>

@@ -15,11 +15,11 @@ import "./PopularProducts";
 import { useState } from "react";
 
 function DashboardStartsGrid({ categories, setSelectedCategory }) {
-  const [selectedCategory, setSelectedCategoryLocal] = useState(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
-  const handleCategorySelect = (categoryName) => {
-    setSelectedCategoryLocal(categoryName);
-    setSelectedCategory(categoryName);
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+    setSelectedCategory(categoryId);
   };
 
   const categoryImages = {
@@ -43,8 +43,8 @@ function DashboardStartsGrid({ categories, setSelectedCategory }) {
         {categories.map((category, index) => (
           <BoxWrapper
             key={index}
-            onClick={() => handleCategorySelect(category.cat_name)}
-            isSelected={selectedCategory === category.cat_name}
+            onClick={() => handleCategorySelect(category.cat_id)}
+            isSelected={selectedCategoryId === category.cat_id}
           >
             <div className="flex items-center justify-center w-12 h-12 bg-[#EEF2F5] rounded-md">
               <img src={categoryImages[category.cat_name] || ""} alt={category.cat_name} />

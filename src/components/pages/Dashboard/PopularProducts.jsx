@@ -13,14 +13,14 @@ function PopularProducts({products, onAddToCart}) {
     <h1 className='ml-1 font-bold text-[18px] pb-5'>Popular Products</h1>
 
     <div className="grid w-full grid-cols-4 gap-4 pb-4 overflow-y-auto max-h-[445px] order">
-        {products.map((product, index) => (
-          <BoxWrapper key={index}>
+        {products.map((product) => (
+          <BoxWrapper key={product.itemId}>
             <div className='flex items-center justify-center w-full h-32 bg-[#EEF2F5] rounded-md'>
-              <img src={product.image} alt={product.name} className='w-36'/>
+              <img src={product.itemImage} alt={product.itemName} className='w-36'/>
             </div>
             <div className='flex flex-col'>
-              <span className='text-black text-[14px] font-semibold pb-1'>{product.name}</span>
-              <p className='text-[orange] font-bold'>$ {product.price}</p>
+              <span className='text-black text-[14px] font-semibold pb-1'>{product.itemName}</span>
+              <p className='text-[orange] font-bold'>$ {product.itemPrice}</p>
             </div>
             <button className='bg-[orange] text-white text-[14px] py-2 ml-28 rounded-md' onClick={() => onAddToCart(product)}>Add to Cart</button>
           </BoxWrapper>
