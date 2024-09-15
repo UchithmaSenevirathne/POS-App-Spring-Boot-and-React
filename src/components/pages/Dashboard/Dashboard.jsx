@@ -50,39 +50,68 @@ function Dashboard() {
   //add to cart
   const handleAddToCart = (itemId) => {
     // Fetch the item details from the backend using axios
-  axios.get(`http://localhost:8080/backend/item/${itemId}`)
-  .then(response => {
-    const product = response.data;
-    const existingProduct = cart.find((item) => item.itemId === product.itemId);
-    if (existingProduct) {
-      setCart(
-        cart.map((item) =>
-          item.itemId === product.itemId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      console.log(product)
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }
-  })
-  .catch(error => {
-    console.error("Error fetching item details:", error);
-  });
+    axios.get(`http://localhost:8080/backend/item/${itemId}`)
+      .then(response => {
+        const product = response.data;
+        const existingProduct = cart.find((item) => item.itemId === product.itemId);
+  
+        // Check if item exists in cart and handle quantity
+        if (existingProduct) {
+          // Check if the new quantity exceeds the available quantity
+          if (existingProduct.quantity + 1 <= product.itemQuantity) {
+            setCart(
+              cart.map((item) =>
+                item.itemId === product.itemId
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              )
+            );
+          } else {
+            alert(`Cannot add more than ${product.itemQuantity} ${product.itemName} to the cart.`);
+          }
+        } else {
+          // If the product is not in the cart, check if at least one is available
+          if (product.itemQuantity > 0) {
+            setCart([...cart, { ...product, quantity: 1 }]);
+          } else {
+            alert("This item is out of stock.");
+          }
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching item details:", error);
+      });
   };
+  
 
   if (loading) {
     return <div>Loading categories...</div>;
   }
 
   // Increase quantity
-  const increaseQty = (id) => {
-    setCart(
-      cart.map((item) =>
-        item.itemId === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  const increaseQty = (itemId) => {
+    // Find the product in the cart
+  const productInCart = cart.find(item => item.itemId === itemId);
+
+  // Fetch the current available quantity from the backend
+  axios.get(`http://localhost:8080/backend/item/${itemId}`)
+    .then(response => {
+      const product = response.data;
+
+      // Check if the quantity in the cart + 1 is less than or equal to the available quantity
+      if (productInCart.quantity + 1 <= product.itemQuantity) {
+        setCart(
+          cart.map((item) =>
+            item.itemId === itemId ? { ...item, quantity: item.quantity + 1 } : item
+          )
+        );
+      } else {
+        alert(`Cannot add more than ${product.itemQuantity} ${product.itemName} to the cart.`);
+      }
+    })
+    .catch(error => {
+      console.error("Error fetching item details:", error);
+    });
   };
 
   // Decrease quantity
