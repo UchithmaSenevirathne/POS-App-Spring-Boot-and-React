@@ -10,67 +10,16 @@ import AdminPopularProducts from "./AdminPopularProducts";
 import RecentOrders from "./RecentOrders";
 import Calender from "./Calender";
 import { useOutletContext } from "react-router-dom";
+import axios from 'axios';
 
 function Dashboard() {
   const { role } = useOutletContext();
   const [selectedCategory, setSelectedCategory] = useState("Thumb");
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //cart
   const [cart, setCart] = useState([]);
-  
-
-  const categories = [
-    {
-      name: "Donuts",
-      icon: "donut",
-      image: require("../../assets/images/donut.png"),
-    },
-    {
-      name: "Burger",
-      icon: "burger",
-      image: require("../../assets/images/burger.png"),
-    },
-    {
-      name: "Ice Cream",
-      icon: "ice",
-      image: require("../../assets/images/ice-cream.png"),
-    },
-    {
-      name: "Chicken",
-      icon: "chicken",
-      image: require("../../assets/images/chicken.png"),
-    },
-    {
-      name: "Drinks",
-      icon: "drink",
-      image: require("../../assets/images/drink.png"),
-    },
-    {
-      name: "Pizza",
-      icon: "pizza",
-      image: require("../../assets/images/pizza.png"),
-    },
-    {
-      name: "Cakes",
-      icon: "cupcake",
-      image: require("../../assets/images/cupcake.png"),
-    },
-    {
-      name: "Hot dog",
-      icon: "hotdog",
-      image: require("../../assets/images/hot-dog.png"),
-    },
-    {
-      name: "Potato",
-      icon: "fries",
-      image: require("../../assets/images/fries.png"),
-    },
-    {
-      name: "Veg",
-      icon: "salad",
-      image: require("../../assets/images/salad.png"),
-    },
-  ];
 
   const products = {
     Donuts: [
@@ -426,6 +375,22 @@ function Dashboard() {
       }
     ]
   };
+
+   // Fetch categories from backend
+   useEffect(() => {
+    axios.get('http://localhost:8080/backend/category')
+      .then(response => {
+        setCategories(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the categories!", error);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading categories...</div>;
+  }
 
   //add to cart
   const handleAddToCart = (product) => {
