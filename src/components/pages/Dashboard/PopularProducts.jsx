@@ -22,7 +22,7 @@ function PopularProducts({products, onAddToCart}) {
               <span className='text-black text-[14px] font-semibold pb-1'>{product.itemName}</span>
               <p className='text-[orange] font-bold'>$ {product.itemPrice}</p>
             </div>
-            <button className='bg-[orange] text-white text-[14px] py-2 ml-28 rounded-md' onClick={() => onAddToCart(product)}>Add to Cart</button>
+            <button className='bg-[orange] text-white text-[14px] py-2 ml-28 rounded-md' onClick={() => onAddToCart(product.itemId)}>Add to Cart</button>
           </BoxWrapper>
         ))}
       </div>
