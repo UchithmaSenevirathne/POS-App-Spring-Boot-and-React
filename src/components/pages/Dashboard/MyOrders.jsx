@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import '../../assets/Dashboard.css'
+import axios from "axios";
 import {
   HiOutlineClock,
   HiOutlineLocationMarker,
@@ -16,10 +17,39 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
     0
   );
 
-  const checkout = () => {
-    setOrder([...order, ...cart]);
-    onClearCart();
-  }
+  const checkout = async () => {
+    try {
+      const userEmail = JSON.parse(localStorage.getItem("user")).email;
+      console.log(userEmail)
+      // Prepare orderDTO without user_id initially
+      const orderDTO = {
+        itemIds: cart.map(item => item.itemId),
+        quantity: cart.reduce((total, item) => total + item.quantity, 0),
+        total_price: totalPrice,
+        order_date: new Date().toISOString(),
+      };
+  
+      // Fetch user ID based on email
+      const userResponse = await axios.get(`http://localhost:8080/backend/user/id/${userEmail}`);
+      const userId = userResponse.data;
+      console.log(userId)
+      // Add user_id to the orderDTO
+      orderDTO.user_id = userId;
+  
+      // Place the order with the user ID
+      const orderResponse = await axios.post("http://localhost:8080/backend/orders", orderDTO);
+  
+      if (orderResponse.status === 201) {
+        alert("Order placed successfully");
+        onClearCart();
+      } else {
+        console.error("Error placing order:", orderResponse.statusText);
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
+  };
+  
 
   const [time, setTime] = useState("");
 
