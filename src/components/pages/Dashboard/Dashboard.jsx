@@ -48,7 +48,11 @@ function Dashboard() {
   }, [selectedCategory]);
 
   //add to cart
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (itemId) => {
+    // Fetch the item details from the backend using axios
+  axios.get(`http://localhost:8080/backend/items/${itemId}`)
+  .then(response => {
+    const product = response.data;
     const existingProduct = cart.find((item) => item.id === product.id);
 
     if (existingProduct) {
@@ -62,6 +66,10 @@ function Dashboard() {
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+  })
+  .catch(error => {
+    console.error("Error fetching item details:", error);
+  });
   };
 
   if (loading) {
