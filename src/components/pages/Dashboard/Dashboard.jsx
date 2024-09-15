@@ -3,7 +3,7 @@ import DashboardStartsGrid from "./DashboardStartsGrid";
 import MyOrders from "./MyOrders";
 import PopularProducts from "./PopularProducts";
 import products from "../../../Product.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminDashStartGrid from "./AdminDashStartGrid";
 import SalesChart from "./SalesChart";
 import AdminPopularProducts from "./AdminPopularProducts";
