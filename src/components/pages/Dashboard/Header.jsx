@@ -103,17 +103,10 @@ export default function Header({ role, profilePic }) {
         <span className="ml-2 font-semibold text-gray-700">{user.name || 'Guest'}</span>{" "}
             <Menu.Button className="flex ml-2 text-sm  rounded-full focus:outline-none focus:ring-2 focus:ring-[#fff3dd]">
               <span className="sr-only">Open user menu</span>
-              <div
+              <img
+                src={user.profilePic} alt="Profile Picture" 
                 className="w-10 h-10 bg-white bg-center bg-no-repeat bg-cover border rounded-full"
-                style={{
-                  backgroundImage: `url(${
-                    profilePic ||
-                    "https://cdn.pixabay.com/photo/2018/04/27/03/50/portrait-3353699_1280.jpg"
-                  })`,
-                }}
-              >
-                <span className="sr-only">{user.name}</span>
-              </div>
+              />
             </Menu.Button>
             {/* Display user or admin name */}
           </div>

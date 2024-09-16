@@ -504,7 +504,7 @@ function Items() {
                   <td>
                     {item.itemImage && (
                       <img
-                        src={`data:image/jpeg;base64,${item.itemImage}`}
+                        src={`data:image/jpeg;base64, ${item.itemImage}`}
                         alt="Item"
                         width="50"
                       />

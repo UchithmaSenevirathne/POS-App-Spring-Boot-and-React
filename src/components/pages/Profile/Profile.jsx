@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HiCamera } from 'react-icons/hi';
 import { useUserContext } from '../../../Lib/const/UserContext';
+import axios from 'axios';
 
 function Profile() {
   const { user, setUserDetails } = useUserContext();
@@ -16,12 +17,27 @@ function Profile() {
   const fileInputRef = useRef(null); // Ensure fileInputRef is defined
 
   useEffect(() => {
-    setFullName(user.name);
-    setAddress(user.address || '');
-    setContact(user.contact || '');
-    setEmail(user.email);
-    setProfilePic(user.profilePic || '');
-  }, [user]);
+    const fetchUserDetails = async () => {
+      try {
+        console.log(user.email)
+        const userEmail = user.email
+        const response = await axios.get(`http://localhost:8080/backend/user/details?email=${userEmail}`);
+        if (response.data) {
+          console.log(response.data)
+          setFullName(response.data.name);
+          setAddress(response.data.address);
+          setContact(response.data.contact);
+          setEmail(response.data.email);
+          setProfilePic(response.data.profilePicture);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user details", error);
+      }
+    };
+    
+    fetchUserDetails();
+  }, [user.email]);
+  
 
   const handleProfilePicChange = (e) => {
     const file = e.target.files[0];
@@ -30,37 +46,44 @@ function Profile() {
     }
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-
+  
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-
-    const updatedUser = {
-      ...user,
-      name: fullName,
-      address,
-      contact,
-      email,
-      password,
-      profilePic: profilePic || null,
-    };
-
-    // Update the user in context
-    setUserDetails(updatedUser);
-    
-    // Clear the form and error
-    setFullName('');
-    setAddress('');
-    setContact('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-    setProfilePic('');
-    setError('');
+  
+    const formData = new FormData();
+    formData.append('name', fullName);
+    formData.append('address', address);
+    formData.append('contact', contact);
+    formData.append('email', email);
+    formData.append('password', password);
+    if (profilePic) {
+      formData.append('profilePicture', profilePic);
+    }
+  
+    try {
+      await axios.put(`/backend/user/${user.userId}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      // Optionally update the context with the new user details
+      setUserDetails({
+        ...user,
+        name: fullName,
+        address,
+        contact,
+        email,
+        profilePic,
+      });
+      alert("Profile updated successfully");
+    } catch (error) {
+      console.error("Failed to update profile", error);
+      setError('Failed to update profile');
+    }
   };
+  
 
   return (
     <div className="flex justify-center mt-10 profile-form">
