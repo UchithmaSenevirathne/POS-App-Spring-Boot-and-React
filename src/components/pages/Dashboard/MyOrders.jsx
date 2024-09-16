@@ -22,9 +22,18 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
       const userEmail = JSON.parse(localStorage.getItem("user")).email;
       console.log(userEmail)
       // Prepare orderDTO without user_id initially
+      // const orderDTO = {
+      //   itemIds: cart.map(item => item.itemId),
+      //   quantity: cart.reduce((total, item) => total + item.quantity, 0),
+      //   total_price: totalPrice,
+      //   order_date: new Date().toISOString(),
+      // };
+
       const orderDTO = {
-        itemIds: cart.map(item => item.itemId),
-        quantity: cart.reduce((total, item) => total + item.quantity, 0),
+        itemQuantities: cart.reduce((acc, item) => {
+          acc[item.itemId] = item.quantity; // Map itemId to its ordered quantity
+          return acc;
+        }, {}),
         total_price: totalPrice,
         order_date: new Date().toISOString(),
       };
