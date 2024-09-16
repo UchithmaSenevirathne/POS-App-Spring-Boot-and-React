@@ -1,97 +1,73 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-const recentOrderData = [
-    {
-        id: '1',
-        product_id: '3',
-        customer_id: '23143',
-        customer_name: 'Shirley A. Lape',
-        order_date: '2022-05-17T03:24:00',
-        order_total: '$435.50',
-        current_order_status: 'PLACED',
-        shipment_address: 'Cottage Grove, OR 97424'
-    },
-    {
-        id: '7',
-        product_id: '7',
-        customer_id: '96453',
-        customer_name: 'Ryan Carroll',
-        order_date: '2022-05-14T05:24:00',
-        order_total: '$96.35',
-        current_order_status: 'CONFIRMED',
-        shipment_address: 'Los Angeles, CA 90017'
-    },
-    {
-        id: '2',
-        product_id: '4',
-        customer_id: '65345',
-        customer_name: 'Mason Nash',
-        order_date: '2022-05-17T07:14:00',
-        order_total: '$836.44',
-        current_order_status: 'SHIPPED',
-        shipment_address: 'Westminster, CA 92683'
-    },
-    {
-        id: '3',
-        product_id: '9',
-        customer_id: '87832',
-        customer_name: 'Luke Parkin',
-        order_date: '2022-05-16T12:40:00',
-        order_total: '$334.50',
-        current_order_status: 'SHIPPED',
-        shipment_address: 'San Mateo, CA 94403'
-    },
-    {
-        id: '4',
-        product_id: '8',
-        customer_id: '09832',
-        customer_name: 'Anthony Fry',
-        order_date: '2022-05-14T03:24:00',
-        order_total: '$876.00',
-        current_order_status: 'OUT_FOR_DELIVERY',
-        shipment_address: 'San Mateo, CA 94403'
-    }
-]
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 function RecentOrders() {
-    return(
-        <div className='flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-md'>
-            <strong className='font-medium text-gray-700'>Recent Orders</strong>
-            <div className='mt-3 max-h-[250px] overflow-y-auto'>
-                <table className='w-full text-gray-700 border-gray-200 rounded-sm border-x'>
-                    <thead>
-                    <tr className='bg-[orange] text-white' >
-                        <td>ID</td>
-                        <td>Items QTY</td>
-                        <td>Customer Name</td>
-                        <td>Order Date</td>
-                        <td>Order Total</td>
-                        <td>Deliver Address</td>
-                        {/* <td>Order Status</td> */}
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {recentOrderData.map(order=>
-                            <tr key={order.id} className='hover:bg-[#fff3dd]'>
-                                <td>
-                                    <Link to={`order/${order.id}`} className='text-[orange]'>#{order.id}</Link>
-                                </td>
-                                <td>
-                                    <Link to={`product/${order.product_id}`}>{order.product_id}</Link>
-                                </td>
-                                <td className='text-[#249cff]'>{order.customer_name}</td>
-                                <td >{new Date (order.order_date).toLocaleDateString()}</td>
-                                <td className='text-[orange]'>{order.order_total}</td>
-                                <td>{order.shipment_address}</td>
-                                {/* <td>{getOrderStatus(order.current_order_status)}</td> */}
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    )
+  const [recentOrderData, setRecentOrderData] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/backend/orders`
+        );
+        setRecentOrderData(response.data); // Set the data to your state
+      } catch (error) {
+        console.error("Error fetching order details:", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  return (
+    <div className="flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-md">
+      <strong className="font-medium text-gray-700">Recent Orders</strong>
+      <div className="mt-3 max-h-[250px] overflow-y-auto">
+        <table className="w-full text-gray-700 border-gray-200 rounded-sm border-x">
+          <thead>
+            <tr className="bg-[orange] text-white">
+              <td>ID</td>
+              <td>Product Name</td>
+              <td>Product Quantity</td>
+              <td>Product Price</td>
+              <td>Order Total</td>
+              <td>Customer ID</td>
+              <td>Order Date</td>
+              <td>Deliver Address</td>
+            </tr>
+          </thead>
+          <tbody>
+            {recentOrderData.map((order, index) => (
+              <React.Fragment key={index}>
+                <tr className="hover:bg-[#fff3dd]">
+                  <td>
+                    <Link
+                      to={`order/${order.orderId}`}
+                      className="text-[orange]"
+                    >
+                      #{order.orderId}
+                    </Link>
+                  </td>
+                  <td>{order.productName}</td>
+                  <td>{order.productQuantity}</td>
+                  <td className="text-[#21a821]">
+                    ${order.productPrice.toFixed(2)}
+                  </td>
+                  <td className="text-[orange]">
+                    ${order.orderTotalPrice.toFixed(2)}
+                  </td>
+                  <td className="text-[#249cff]">{order.userId}</td>
+                  <td>{new Date(order.orderDate).toLocaleDateString()}</td>
+                  <td>{order.orderAddress}</td>
+                </tr>
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default RecentOrders;
