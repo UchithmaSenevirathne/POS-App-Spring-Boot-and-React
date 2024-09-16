@@ -63,9 +63,13 @@ function Profile() {
     if (profilePic) {
       formData.append('profilePicture', profilePic);
     }
-  
+    
+    const userEmail = JSON.parse(localStorage.getItem("user")).email;
+    const userResponse = await axios.get(`http://localhost:8080/backend/user/id/${userEmail}`);
+    const userId = userResponse.data;
+    console.log(userId)
     try {
-      await axios.put(`/backend/user/${user.userId}`, formData, {
+      await axios.put(`http://localhost:8080/backend/user/${userId}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       // Optionally update the context with the new user details
