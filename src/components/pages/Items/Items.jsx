@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { HiOutlineX } from "react-icons/hi";
+import '../../assets/Downarrow.css'
 
 const API_URL = "http://localhost:8080/backend/item"; // Update with your API URL
 
@@ -17,6 +18,9 @@ function Items() {
   });
   const [editingIndex, setEditingIndex] = useState(null);
   const [categories, setCategories] = useState([]);
+  const containerRef = useRef(null);
+  const [showArrow, setShowArrow] = useState(false);
+  const [arrowVisible, setArrowVisible] = useState(true);
 
   useEffect(() => {
     // Fetch all items when the component mounts
@@ -169,11 +173,36 @@ function Items() {
     }
   };
 
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (containerRef.current) {
+        setShowArrow(containerRef.current.scrollHeight > containerRef.current.clientHeight);
+      }
+    };
+
+    const handleScroll = () => {
+      if (containerRef.current) {
+        setArrowVisible(containerRef.current.scrollTop === 0);
+      }
+    };
+
+    checkOverflow(); // Check overflow initially
+    window.addEventListener("resize", checkOverflow); // Check overflow on window resize
+    containerRef.current.addEventListener("scroll", handleScroll); // Handle scroll
+
+    return () => {
+      window.removeEventListener("resize", checkOverflow);
+      if (containerRef.current) {
+        containerRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [items]);
+
   return (
     <div className="flex gap-10 mr-10">
       {/* Item List Table */}
       <div className="container">
-        <div className="py-4 overflow-y-auto max-h-[760px]">
+        <div ref={containerRef} className="py-4 overflow-y-auto max-h-[760px]">
           <table className="table w-full bg-white border">
             <thead>
               <tr className="bg-[orange] text-white">
@@ -201,7 +230,7 @@ function Items() {
                     )}
                   </td>
                   <td>{item.itemName}</td>
-                  <td>{item.itemPrice}</td>
+                  <td className="text-[orange]">RS: {item.itemPrice}</td>
                   <td>{item.itemQuantity}</td>
                   <td>
                     <button
@@ -221,6 +250,9 @@ function Items() {
               ))}
             </tbody>
           </table>
+          {showArrow && arrowVisible && (
+          <DownArrow />
+        )}
         </div>
       </div>
 
@@ -380,6 +412,27 @@ function Items() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function DownArrow() {
+  return (
+    <div className="bottom-10 arrow-container right-[56%]">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-6 h-6 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
     </div>
   );
 }

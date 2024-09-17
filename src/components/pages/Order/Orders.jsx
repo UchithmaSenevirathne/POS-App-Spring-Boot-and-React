@@ -62,9 +62,9 @@ function RecentOrders() {
                     </td>
                     <td>{order.productName}</td>
                     <td>{order.productQuantity}</td>
-                    <td className="text-[#21a821]">${order.productPrice.toFixed(2)}</td>
-                    <td className="text-[orange]">${order.orderTotalPrice.toFixed(2)}</td>
-                    <td className="text-[#249cff]">{order.userId}</td>
+                    <td className="text-[#21a821]">RS: {order.productPrice.toFixed(2)}</td>
+                    <td className="text-[orange]">RS: {order.orderTotalPrice.toFixed(2)}</td>
+                    <td className="text-[#249cff]">#{order.userId}</td>
                     <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                     <td>{order.orderAddress}</td>
                   </tr>
@@ -97,9 +97,9 @@ function RecentOrders() {
                     />
                   </td>
                   <td className="px-4 py-2 border-b">{orderDetail.productName}</td>
-                  <td className="px-4 py-2 border-b text-[#21a821]">{orderDetail.productPrice}</td>
+                  <td className="px-4 py-2 border-b text-[#21a821]">RS: {orderDetail.productPrice}</td>
                   <td className="px-4 py-2 border-b">{orderDetail.productQuantity}</td>
-                  <td className="px-4 py-2 border-b text-[red]">{orderDetail.orderTotalPrice}</td>
+                  <td className="px-4 py-2 border-b text-[red]">RS: {orderDetail.orderTotalPrice}</td>
                 </tr>
               ))}
             </tbody>

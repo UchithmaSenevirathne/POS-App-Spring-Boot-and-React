@@ -70,12 +70,16 @@
 
 // export default AdminPopularProducts;
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import '../../assets/Downarrow.css'
 
 function AdminPopularProducts() {
     const [popularProducts, setPopularProducts] = useState([]);
+    const containerRef = useRef(null);
+    const [showArrow, setShowArrow] = useState(false);
+    const [arrowVisible, setArrowVisible] = useState(true);
 
     useEffect(() => {
         // Fetch popular items from the backend
@@ -90,10 +94,35 @@ function AdminPopularProducts() {
         fetchPopularProducts();
     }, []);
 
+    useEffect(() => {
+        const checkOverflow = () => {
+          if (containerRef.current) {
+            setShowArrow(containerRef.current.scrollHeight > containerRef.current.clientHeight);
+          }
+        };
+    
+        const handleScroll = () => {
+          if (containerRef.current) {
+            setArrowVisible(containerRef.current.scrollTop === 0);
+          }
+        };
+    
+        checkOverflow(); // Check overflow initially
+        window.addEventListener("resize", checkOverflow); // Check overflow on window resize
+        containerRef.current.addEventListener("scroll", handleScroll); // Handle scroll
+    
+        return () => {
+          window.removeEventListener("resize", checkOverflow);
+          if (containerRef.current) {
+            containerRef.current.removeEventListener("scroll", handleScroll);
+          }
+        };
+      }, [popularProducts]);
+
     return (
-        <div className='bg-white px-4 pt-3 pb-4 rounded-md border border-gray-200 w-[23rem] max-h-[350px] overflow-y-auto'>
+        <div ref={containerRef} className='bg-white px-4 pt-3 pb-4 rounded-md border border-gray-200 w-[23rem] max-h-[350px] overflow-y-auto'>
             <strong className='font-medium text-gray-700'>Popular Products</strong>
-            <div className='flex flex-col gap-5 mt-4'>
+            <div className='flex flex-col gap-4 mt-4'>
                 {popularProducts.map(product => (
                     <Link key={product.itemId} to={`/product/${product.itemId}`} className='flex hover:no-underline'>
                         <div className='w-10 h-10 overflow-hidden bg-gray-200 rounded-sm min-w-10'>
@@ -105,12 +134,36 @@ function AdminPopularProducts() {
                                 {product.quantity === 0 ? 'Out of Stock' : product.quantity + ' in Stock'}
                             </span>
                         </div>
-                        <div className='pl-2 text-xs text-gray-400'>${product.itemPrice.toFixed(2)}</div>
+                        <div className='pl-2 text-xs text-gray-400'>RS: {product.itemPrice.toFixed(2)}</div>
                     </Link>
                 ))}
             </div>
+            {showArrow && arrowVisible && (
+          <DownArrow />
+        )}
         </div>
     );
 }
+
+function DownArrow() {
+    return (
+      <div className="arrow-container right-[10%] bottom-10">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </div>
+    );
+  }
 
 export default AdminPopularProducts;

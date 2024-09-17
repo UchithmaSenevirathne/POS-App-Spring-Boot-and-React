@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import '../../assets/Dashboard.css'
 import axios from "axios";
 import visa from '../../assets/images/payment/visa.jpg'
 import mastercard from '../../assets/images/payment/mastercard.jpg'
+// import DownArrow from "../../../Lib/const/DownArrow";
 import {
   HiOutlineClock,
   HiOutlineLocationMarker,
@@ -10,9 +11,13 @@ import {
 } from "react-icons/hi";
 import { HiOutlineCursorArrowRays } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import '../../assets/Downarrow.css'
 
 function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClearCart }) {
   const [order, setOrder] = useState([]);
+  const containerRef = useRef(null);
+  const [showArrow, setShowArrow] = useState(false);
+  const [arrowVisible, setArrowVisible] = useState(true);
   
   const totalPrice = cart.reduce(
     (total, item) => total + item.itemPrice * item.quantity,
@@ -84,6 +89,31 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
 
     return () => clearInterval(timerId); // Cleanup interval on component unmount
   }, []);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (containerRef.current) {
+        setShowArrow(containerRef.current.scrollHeight > containerRef.current.clientHeight);
+      }
+    };
+
+    const handleScroll = () => {
+      if (containerRef.current) {
+        setArrowVisible(containerRef.current.scrollTop === 0);
+      }
+    };
+
+    checkOverflow(); // Check overflow initially
+    window.addEventListener("resize", checkOverflow); // Check overflow on window resize
+    containerRef.current.addEventListener("scroll", handleScroll); // Handle scroll
+
+    return () => {
+      window.removeEventListener("resize", checkOverflow);
+      if (containerRef.current) {
+        containerRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [cart]);
   
   return (
     <div className="my-orders w-[25rem] bg-white mt-10 py-9 px-10 rounded-md">
@@ -101,7 +131,7 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
         </div>
       </div>
       <hr />
-      <div className="overflow-y-auto py-9 cart max-h-52" >
+      <div ref={containerRef} className="overflow-y-auto py-9 cart max-h-52" >
         <div>
         {cart.map((item, index) => (
           <div key={index} className="flex items-center justify-between py-2">
@@ -127,6 +157,9 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
           </div>
         ))}
         </div>
+        {showArrow && arrowVisible && (
+          <DownArrow />
+        )}
       </div>
       <hr />
       <div className="pt-9">
@@ -145,6 +178,27 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
       <button className="w-full py-2 mt-4 text-white bg-[orange] rounded-md" onClick={checkout}>
         Checkout
       </button>
+    </div>
+  );
+}
+
+function DownArrow() {
+  return (
+    <div className="bottom-[42%] arrow-container right-[11%]">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-6 h-6 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
     </div>
   );
 }

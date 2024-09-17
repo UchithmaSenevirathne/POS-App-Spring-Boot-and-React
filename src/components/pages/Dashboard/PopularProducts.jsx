@@ -73,7 +73,8 @@ import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { HiOutlineStar } from "react-icons/hi";
 import { FaStar } from "react-icons/fa6";
-import DownArrow from "../../../Lib/const/DownArrow";
+// import DownArrow from "../../../Lib/const/DownArrow";
+import '../../assets/Downarrow.css'
 
 function PopularProducts({ onAddToCart, products }) {
   const containerRef = useRef(null);
@@ -161,6 +162,27 @@ function PopularProducts({ onAddToCart, products }) {
         )}
       </div>
     </>
+  );
+}
+
+function DownArrow() {
+  return (
+    <div className="arrow-container right-[48%] bottom-0">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-6 h-6 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
+    </div>
   );
 }
 
