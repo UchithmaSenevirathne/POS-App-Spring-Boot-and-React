@@ -119,7 +119,7 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
               </div>
             </div>
             <p className="font-bold text-red-500">
-              $ {(item.itemPrice * item.quantity).toFixed(2)}
+              RS: {(item.itemPrice * item.quantity).toFixed(2)}
             </p>
             <div className="ml-3">
               <HiOutlineX className="text-gray-400 cursor-pointer" onClick={() => onRemoveFromCart(item.itemId)} />
@@ -140,7 +140,7 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
       </div>
       <div className="flex justify-between pt-9">
         <span className="font-bold">Total</span>
-        <span className="font-bold">$ {totalPrice.toFixed(2)}</span>
+        <span className="font-bold">RS: {totalPrice.toFixed(2)}</span>
       </div>
       <button className="w-full py-2 mt-4 text-white bg-[orange] rounded-md" onClick={checkout}>
         Checkout

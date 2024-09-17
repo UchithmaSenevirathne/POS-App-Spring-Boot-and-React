@@ -45,7 +45,7 @@ function SidebarLink({ item, currentPath }) {
             to={`/layout${item.path}`}
             className={classNames(
                 'flex items-center gap-2 font-normal px-6 py-2 rounded-md text-base mx-3 transition-all duration-500 no-underline hover:no-underline',
-                isActive ? 'bg-[#fff3dd] text-[orange]' : 'text-[#b6b6b6] hover:bg-[#fff3dd] hover:text-[orange]'
+                isActive ? 'bg-[#fff3dd] text-[orange]' : 'text-[#505050] hover:bg-[#fff3dd] hover:text-[orange]'
             )}
         >
             <span className='text-xl'>{item.icon}</span>
