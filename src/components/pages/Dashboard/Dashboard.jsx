@@ -34,15 +34,37 @@ function Dashboard() {
   }, []);
 
   // Fetch products when a category is selected
+  // useEffect(() => {
+  //   console.log("select cat id ", selectedCategory)
+  //   if (selectedCategory) {
+  //     axios.get(`http://localhost:8080/backend/category/items/${selectedCategory}`)
+  //       .then(response => {
+  //         setProducts(response.data);
+  //       })
+  //       .catch(error => {
+  //         console.error("Error fetching products for category:", error);
+  //       });
+  //   }
+  // }, [selectedCategory]);
   useEffect(() => {
-    console.log("select cat id ", selectedCategory)
     if (selectedCategory) {
+      // Fetch items for the selected category
+      console.log("Selected category ID: ", selectedCategory);
       axios.get(`http://localhost:8080/backend/category/items/${selectedCategory}`)
         .then(response => {
           setProducts(response.data);
         })
         .catch(error => {
           console.error("Error fetching products for category:", error);
+        });
+    } else {
+      // Fetch first 8 items if no category is selected
+      axios.get("http://localhost:8080/backend/item?limit=8")  // Assuming you have an endpoint that supports a limit
+        .then(response => {
+          setProducts(response.data);
+        })
+        .catch(error => {
+          console.error("Error fetching items:", error);
         });
     }
   }, [selectedCategory]);
@@ -173,7 +195,7 @@ function Dashboard() {
                 setSelectedCategory={setSelectedCategory}
               />
             </div>
-            <div className="pt-1">
+            <div className="">
               <PopularProducts
                 products={products}
                 onAddToCart={handleAddToCart}

@@ -39,7 +39,7 @@ function DashboardStartsGrid({ categories, setSelectedCategory }) {
     <>
       <h1 className="ml-1 font-bold text-[18px] pb-5">Explore Categories</h1>
 
-      <div className="grid w-full grid-cols-5 gap-4 pb-4">
+      <div className="grid w-full grid-cols-5 gap-4 pb-3">
         {categories.map((category, index) => (
           <BoxWrapper
             key={index}

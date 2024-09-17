@@ -41,26 +41,14 @@ import axios from "axios";
 import { HiOutlineStar } from "react-icons/hi";
 import { FaStar } from "react-icons/fa6";
 
-function PopularProducts({ onAddToCart }) {
-  const [products, setProducts] = useState([]);
-
-  // Fetch items from the backend
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/backend/item")
-      .then((response) => {
-        setProducts(response.data); // Set the fetched items to state
-      })
-      .catch((error) => {
-        console.error("Error fetching items:", error);
-      });
-  }, []);
+function PopularProducts({ onAddToCart, products }) {
+  // const [products, setProducts] = useState([]);
 
   return (
     <>
       <h1 className="ml-1 font-bold text-[18px] pb-5">Popular Products</h1>
 
-      <div className="grid w-full grid-cols-4 gap-4 pb-4 overflow-y-auto max-h-[445px] order">
+      <div className="grid w-full grid-cols-4 gap-4 pb-4 overflow-y-auto max-h-[480px] order">
         {products.map((product) => (
           <BoxWrapper key={product.itemId}>
             <div className="flex items-center justify-center w-full h-40 bg-[#EEF2F5] rounded-xl">
@@ -83,19 +71,19 @@ function PopularProducts({ onAddToCart }) {
                   RS {product.itemPrice + 10}
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                   <FaStar className="text-[orange]"/>
                   <p className="text-[12px] text-[#000000]">2.5K+</p>
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between gap-2 mt-2">
+            <div className="flex items-center justify-between gap-5 mt-2">
             <button
-              className="bg-[#EEF2F5] text-black text-[14px] py-2 rounded-md w-full font-semibold">
+              className="bg-[#EEF2F5] text-black text-[14px] py-2 rounded-lg w-full font-semibold">
               WishList
             </button>
             <button
-              className="bg-[orange] text-white text-[14px] py-2 rounded-md w-full"
+              className="bg-[orange] text-white text-[14px] py-2 rounded-lg w-full"
               onClick={() => onAddToCart(product.itemId)}
             >
               Add to Cart

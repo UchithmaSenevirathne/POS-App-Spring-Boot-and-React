@@ -173,7 +173,7 @@ function Items() {
     <div className="flex gap-10 mr-10">
       {/* Item List Table */}
       <div className="container">
-        <div className="py-4">
+        <div className="py-4 overflow-y-auto max-h-[760px]">
           <table className="table w-full bg-white border">
             <thead>
               <tr className="bg-[orange] text-white">
@@ -189,7 +189,7 @@ function Items() {
               {items.map((item, index) => (
                 <tr key={item.itemId}>
                   <th scope="row" className="text-blue-400">
-                    {item.itemId}
+                    #{item.itemId}
                   </th>
                   <td>
                     {item.itemImage && (

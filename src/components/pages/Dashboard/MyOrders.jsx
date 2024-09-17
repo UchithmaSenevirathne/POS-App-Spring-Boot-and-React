@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import '../../assets/Dashboard.css'
 import axios from "axios";
+import visa from '../../assets/images/payment/visa.jpg'
+import mastercard from '../../assets/images/payment/mastercard.jpg'
 import {
   HiOutlineClock,
   HiOutlineLocationMarker,
@@ -130,8 +132,10 @@ function MyOrders({ cart, onIncreaseQty, onDecreaseQty, onRemoveFromCart, onClea
       <div className="pt-9">
         <h2 className="pb-5 font-bold text-[18px]">Payment Method</h2>
         <div className="flex gap-3">
-            <div className="w-full bg-[#fff3dd] h-[100px] rounded-md"></div>
-            <div className="w-full bg-[#fff3dd] h-[100px] rounded-md"></div>
+            <img src={visa} alt="" className="w-full h-[100px] rounded-md"/>
+            <img src={mastercard} alt="" className="w-full h-[100px] rounded-md"/>
+            {/* <div className="w-full bg-[#fff3dd] h-[100px] rounded-md"></div> */}
+            {/* <div className="w-full bg-[#fff3dd] h-[100px] rounded-md"></div> */}
         </div>
       </div>
       <div className="flex justify-between pt-9">

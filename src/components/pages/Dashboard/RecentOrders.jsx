@@ -23,7 +23,7 @@ function RecentOrders() {
   return (
     <div className="flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-md">
       <strong className="font-medium text-gray-700">Recent Orders</strong>
-      <div className="mt-3 max-h-[250px] overflow-y-auto">
+      <div className="mt-3 max-h-[280px] overflow-y-auto">
         <table className="w-full text-gray-700 border-gray-200 rounded-sm border-x">
           <thead>
             <tr className="bg-[orange] text-white">

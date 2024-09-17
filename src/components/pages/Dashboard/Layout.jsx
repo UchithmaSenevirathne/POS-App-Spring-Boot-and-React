@@ -41,7 +41,7 @@ export default function Layout() {
       <div className="flex flex-col flex-1">
         {/* Header is always shown */}
         <Header role={user.role} profilePic={user.profilePic} name={user.name} />
-        <div className="flex-1 min-h-0 py-8 pl-10 overflow-auto">
+        <div className="flex-1 min-h-0 pl-10 overflow-auto py-7">
           <Outlet context={{ role: user.role, profilePic: user.profilePic, name: user.name }}/>
         </div>
       </div>
