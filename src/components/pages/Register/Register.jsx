@@ -146,7 +146,8 @@ function Register({ users, setUsers }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState('');
+  const [imageBase64, setImageBase64] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { setUserDetails } = useUserContext(); 
@@ -154,9 +155,18 @@ function Register({ users, setUsers }) {
   const fileInputRef = useRef(null);
 
   const handleProfilePicChange = (e) => {
+    // const file = e.target.files[0];
+    // if (file) {
+    //   setProfilePic(file); // Set the file directly to be sent as form data
+    // }
     const file = e.target.files[0];
     if (file) {
-      setProfilePic(file); // Set the file directly to be sent as form data
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // Convert the file to base64
+      reader.onload = () => {
+        setImageBase64(reader.result); // Set the base64 string
+        setProfilePic(file); // Show the image preview
+      };
     }
   };
 
@@ -174,7 +184,7 @@ function Register({ users, setUsers }) {
     formData.append("contact", contact);
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("profilePicture", profilePic);  // Send the file as form data
+    formData.append("profilePicture", imageBase64);  // Send the file as form data
 
     try {
       const response = await axios.post("http://localhost:8080/backend/user/register", formData, {

@@ -9,7 +9,7 @@ function RecentOrders() {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/backend/orders`
+          `http://localhost:8080/backend/orders/recent`
         );
         setRecentOrderData(response.data); // Set the data to your state
       } catch (error) {
@@ -28,12 +28,9 @@ function RecentOrders() {
           <thead>
             <tr className="bg-[orange] text-white">
               <td>ID</td>
-              <td>Product Name</td>
-              <td>Product Quantity</td>
-              <td>Product Price</td>
-              <td>Order Total</td>
-              <td>Customer ID</td>
               <td>Order Date</td>
+              <td>Customer ID</td>
+              <td>Order Total</td>
               <td>Deliver Address</td>
             </tr>
           </thead>
@@ -49,17 +46,12 @@ function RecentOrders() {
                       #{order.orderId}
                     </Link>
                   </td>
-                  <td>{order.productName}</td>
-                  <td>{order.productQuantity}</td>
-                  <td className="text-[#21a821]">
-                    ${order.productPrice.toFixed(2)}
-                  </td>
-                  <td className="text-[orange]">
-                    ${order.orderTotalPrice.toFixed(2)}
-                  </td>
-                  <td className="text-[#249cff]">{order.userId}</td>
                   <td>{new Date(order.orderDate).toLocaleDateString()}</td>
-                  <td>{order.orderAddress}</td>
+                  <td className="text-[#249cff]">{order.userId}</td>
+                  <td className="text-[orange]">
+                    ${order.orderTotal.toFixed(2)}
+                  </td>
+                  <td>{order.userAddress}</td>
                 </tr>
               </React.Fragment>
             ))}

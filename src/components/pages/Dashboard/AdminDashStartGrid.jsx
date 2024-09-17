@@ -11,7 +11,7 @@ function AdminDashStartGrid() {
                 <div className='pl-4'>
                     <span className='text-sm font-light text-gray-500'>Total Sales</span>
                     <div className='flex items-center'>
-                        <strong className='text-xl font-semibold text-gray-700'>$34525.60</strong>
+                        <strong className='text-xl font-semibold text-gray-700'>RS: 34525.60</strong>
                         <span className='pl-2 text-sm text-green-500'>+234</span>
                     </div>
                 </div>
@@ -23,7 +23,7 @@ function AdminDashStartGrid() {
                 <div className='pl-4'>
                     <span className='text-sm font-light text-gray-500'>Monthly Sales</span>
                     <div className='flex items-center'>
-                        <strong className='text-xl font-semibold text-gray-700'>$3425</strong>
+                        <strong className='text-xl font-semibold text-gray-700'>RS: 3425</strong>
                         <span className='pl-2 text-sm text-green-500'>-343</span>
                     </div>
                 </div>

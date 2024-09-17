@@ -129,7 +129,7 @@ function Login({ setCurrentUser }) {
           const userData = {
             email: loggedInEmail,
             name: fullName,
-            profilePic: profilePicture ? `data:image/jpeg;base64,${profilePicture}` : null, // Assuming base64 encoding
+            profilePic: profilePicture, // Assuming base64 encoding
             role: role
           };
 
