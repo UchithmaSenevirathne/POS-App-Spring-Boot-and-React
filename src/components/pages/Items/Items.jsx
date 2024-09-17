@@ -240,7 +240,7 @@ function Items() {
                       Edit
                     </button>
                     <button
-                      className="mx-2 btn bg-[red] py-2 px-3 text-white rounded-md"
+                      className="mx-2 btn border-[red] py-2 px-3 text-[red] rounded-md border"
                       onClick={() => handleDelete(index)}
                     >
                       Delete

@@ -13,7 +13,7 @@ import { FaStar } from "react-icons/fa6";
 import axios from "axios";
 import '../../assets/Downarrow.css'
 import { useUserContext } from "../../../Lib/const/UserContext";
-
+import { useNavigate } from "react-router-dom";
 
 function MenuItems() {
   const [categories, setCategories] = useState([]);
@@ -25,7 +25,9 @@ function MenuItems() {
   const [showArrow, setShowArrow] = useState(false);
   const [arrowVisible, setArrowVisible] = useState(true);
   const { setUser } = useUserContext(); 
-
+  const navigate = useNavigate();
+  const [cart, setCart] = useState([]);
+  
   useEffect(() => {
     axios
       .get("http://localhost:8080/backend/category")
@@ -61,6 +63,58 @@ function MenuItems() {
         });
     }
   }, [selectedCategory]);
+
+  const handleAddToCart = (product) => {
+    // Check if user email exists in localStorage
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    
+
+    if (storedUser && storedUser.email) {
+      console.log(product.itemId)
+      // User is logged in, set user context and proceed with adding to cart
+      setUser(storedUser);
+
+      // Add product to cart (can be implemented with state or API call)
+      axios.get(`http://localhost:8080/backend/item/${product.itemId}`)
+      .then(response => {
+        const getproduct = response.data;
+        const existingProduct = cart.find((item) => item.itemId === getproduct.itemId);
+  
+        // Check if item exists in cart and handle quantity
+        if (existingProduct) {
+          // Check if the new quantity exceeds the available quantity
+          if (existingProduct.quantity + 1 <= getproduct.itemQuantity) {
+            setCart(
+              cart.map((item) =>
+                item.itemId === getproduct.itemId
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              )
+            );
+          } else {
+            alert(`Cannot add more than ${getproduct.itemQuantity} ${getproduct.itemName} to the cart.`);
+          }
+        } else {
+          // If the product is not in the cart, check if at least one is available
+          if (getproduct.itemQuantity > 0) {
+            setCart([...cart, { ...getproduct, quantity: 1 }]);
+          } else {
+            alert("This item is out of stock.");
+          }
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching item details:", error);
+      });
+      console.log(`Added ${product.itemName} to cart!`);
+      
+      // Redirect to user dashboard or show cart update
+      navigate("/layout");
+    } else {
+      // No user is logged in, redirect to login page
+      navigate("/login");
+    }
+  };
 
   // useEffect(() => {
   //   const checkOverflow = () => {
@@ -112,7 +166,7 @@ function MenuItems() {
   };
 
   return (
-    <div className="mx-[250px] pt-28">
+    <div className="mx-[250px] pt-28" id="menuPage">
       <div className="grid w-full grid-cols-5 gap-4 pb-20">
         {categories.map((category, index) => (
           <CategoryBoxWrapper
@@ -171,7 +225,8 @@ function MenuItems() {
               <button className="bg-[#EEF2F5] text-black text-[14px] py-2 rounded-lg w-full font-semibold">
                 WishList
               </button>
-              <button className="bg-[orange] text-white text-[14px] py-2 rounded-lg w-full">
+              <button className="bg-[orange] text-white text-[14px] py-2 rounded-lg w-full"
+               onClick={() => handleAddToCart(product)}>
                 Add to Cart
               </button>
             </div>

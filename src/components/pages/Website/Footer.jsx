@@ -24,7 +24,7 @@ function Footer() {
             <img src={twitter} alt="" className="w-[25px] h-[25px]"/>
         </div>
       </div>
-      <img src={divider} alt="" className="absolute top-[5100px] z-10" />
+      <img src={divider} alt="" className="absolute top-[5150px] z-10" />
       <img src={footImg} alt="" className="h-[524px] object-cover footerimg" />
     </div>
   );
