@@ -10,7 +10,7 @@ import { FaCartShopping} from "react-icons/fa6";
 function Footer() {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="absolute flex flex-col top-[4080px] z-50 gap-10">
+      <div className="absolute flex flex-col top-[5400px] z-50 gap-10">
         <div className="flex items-center justify-center gap-3">
           <FaCartShopping className="text-[orange] text-[50px]" />
           <p className="font-bold text-[32px] font-poppins text-white">FOODIE</p>
@@ -24,7 +24,7 @@ function Footer() {
             <img src={twitter} alt="" className="w-[25px] h-[25px]"/>
         </div>
       </div>
-      <img src={divider} alt="" className="absolute top-[3820px] z-10" />
+      <img src={divider} alt="" className="absolute top-[5100px] z-10" />
       <img src={footImg} alt="" className="h-[524px] object-cover footerimg" />
     </div>
   );

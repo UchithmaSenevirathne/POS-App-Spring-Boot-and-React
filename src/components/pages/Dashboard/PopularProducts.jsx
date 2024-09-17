@@ -195,3 +195,4 @@ function BoxWrapper({ children }) {
 }
 
 export default PopularProducts;
+
