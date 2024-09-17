@@ -7,7 +7,7 @@ import '../../assets/menu.css'
 
 function About() {
   return (
-    <div className="bg-white h-[800px] bg-img">
+    <div className="bg-white h-[800px] bg-img" id="aboutPage">
       <div className="flex items-center gap-20 px-56 py-32">
         <div>
           <img src={aboutImng} alt="" className="flex-1 w-[800px]" />

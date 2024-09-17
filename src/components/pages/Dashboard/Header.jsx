@@ -16,7 +16,7 @@ export default function Header({ role, profilePic }) {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center justify-between h-24 pr-6 bg-white">
+    <div className="flex items-center justify-between h-20 pr-6 bg-white">
       <div className="relative">
         <HiOutlineSearch
           fontSize={20}

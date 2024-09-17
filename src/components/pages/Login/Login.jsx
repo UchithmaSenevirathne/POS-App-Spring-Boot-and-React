@@ -80,6 +80,7 @@ import axios from "axios"; // Import axios for API requests
 import { NavLink } from "react-router-dom";
 import { useUserContext } from "../../../Lib/const/UserContext";
 import "../../assets/Login.css";
+import logingBg from "../../assets/images/loginBg.jpg";
 
 function Login({ setCurrentUser }) {
   const [email, setEmail] = useState("");
@@ -110,7 +111,7 @@ function Login({ setCurrentUser }) {
       if (response.status === 201) {
         const { token, email: loggedInEmail, role } = response.data.data;
 
-        console.log(role)
+        console.log(role);
 
         // Fetch user details from the backend using the email
         const userDetailsResponse = await axios.get(
@@ -130,7 +131,7 @@ function Login({ setCurrentUser }) {
             email: loggedInEmail,
             name: fullName,
             profilePic: profilePicture, // Assuming base64 encoding
-            role: role
+            role: role,
           };
 
           // Update UserContext and local state
@@ -154,51 +155,63 @@ function Login({ setCurrentUser }) {
   };
 
   return (
-    <div className="form mt-[250px]">
-      <form onSubmit={handleLogin}>
-        <h1>Sign In</h1>
-        {error && <p className="error text-[red] text-[12px]">{error}</p>}
-        <div className="input-box">
-          <input
-            type="email"
-            placeholder="Username"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="input-box">
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+    <div className="flex w-screen h-screen overflow-hidden">
+      {/* left side: Image */}
+      <div className="w-2/3 h-[96%] mt-4 ml-4">
+        <img
+          src={logingBg}
+          alt="Background"
+          className="object-cover w-full h-full rounded-xl"
+        />
+      </div>
+      <div className="flex items-center justify-center w-1/3">
+        <div className="w-3/4 form">
+          <form onSubmit={handleLogin}>
+            <h1>Sign In to Your Account</h1>
+            <p>Access your account by signing in with your credentials. Please enter your username and password to continue.</p>
+            {error && <p className="error text-[red] text-[12px]">{error}</p>}
+            <div className="input-box">
+              <input
+                type="email"
+                placeholder="Username"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-box">
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
-        <div className="remember">
-          <label>
-            <input type="checkbox" className="checkbox-round" />
-            Remember me
-          </label>
-          <a href="#">Forgot password?</a>
-        </div>
+            <div className="remember">
+              <label>
+                <input type="checkbox" className="checkbox-round" />
+                Remember me
+              </label>
+              <a href="#">Forgot password?</a>
+            </div>
 
-        <button type="submit">Login</button>
+            <button type="submit">Login</button>
 
-        <div className="nav">
-          <p>
-            Don't have an account?{" "}
-            <NavLink className="nav-link" to="/register">
-              Sign Up
-            </NavLink>
-          </p>
+            <div className="nav">
+              <p>
+                Don't have an account?{" "}
+                <NavLink className="nav-link" to="/register">
+                  Sign Up
+                </NavLink>
+              </p>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
 
 export default Login;
-

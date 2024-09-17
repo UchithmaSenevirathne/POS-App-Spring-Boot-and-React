@@ -5,10 +5,10 @@ import { FaCartShopping } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
+  { name: 'Home', href: '#homePage', current: true },
   { name: 'Menu', href: '#', current: false },
-  { name: 'About', href: '#', current: false },
-  { name: 'Contact', href: '#', current: false },
+  { name: 'About', href: '#aboutPage', current: false },
+  { name: 'Contact', href: '#contactPage', current: false },
 ]
 
 function classNames(...classes) {

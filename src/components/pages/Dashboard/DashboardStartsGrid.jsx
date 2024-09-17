@@ -46,7 +46,7 @@ function DashboardStartsGrid({ categories, setSelectedCategory }) {
             onClick={() => handleCategorySelect(category.cat_id)}
             isSelected={selectedCategoryId === category.cat_id}
           >
-            <div className="flex items-center justify-center w-12 h-12 bg-[#EEF2F5] rounded-md">
+            <div className="flex items-center justify-center w-12 h-12 bg-[#EEF2F5] rounded-md p-1">
               <img src={categoryImages[category.cat_name] || ""} alt={category.cat_name} />
             </div>
             <div className="pl-4">
@@ -66,7 +66,7 @@ export default DashboardStartsGrid;
 function BoxWrapper({ children, onClick, isSelected }) {
   return (
     <div
-      className={`flex items-center flex-1 p-4 border rounded-md cursor-pointer group ${
+      className={`flex items-center flex-1 p-3 border rounded-xl cursor-pointer group ${
         isSelected
           ? "bg-[#fff3dd] border-[orange]"
           : "bg-white hover:bg-[#fff3dd] hover:border-[orange] transition-all duration-500"

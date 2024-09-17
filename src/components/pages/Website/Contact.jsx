@@ -5,7 +5,7 @@ import email from '../../assets/images/web/contact/email.png'
 
 function Contact() {
   return (
-    <div className="bg-white h-[800px]">
+    <div className="bg-white h-[800px]" id="contactPage">
       <div className="flex gap-40 px-56 py-32">
         <div className="flex flex-col w-[70%] gap-10">
           <h1 className="font-raleway font-bold text-[28px] mb-10">
