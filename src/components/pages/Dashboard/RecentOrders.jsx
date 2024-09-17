@@ -50,7 +50,7 @@ function RecentOrders() {
   }, [recentOrderData]);
 
   return (
-    <div className="flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-md">
+    <div className="flex-1 px-4 pt-3 pb-4 bg-white border border-gray-200 rounded-xl">
       <strong className="font-medium text-gray-700">Recent Orders</strong>
       <div ref={containerRef} className="mt-3 max-h-[280px] overflow-y-auto">
         <table className="w-full text-gray-700 border-gray-200 rounded-sm border-x">

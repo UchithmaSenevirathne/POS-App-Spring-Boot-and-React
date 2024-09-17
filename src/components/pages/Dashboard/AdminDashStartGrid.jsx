@@ -59,5 +59,5 @@ function AdminDashStartGrid() {
 export default AdminDashStartGrid;
 
 function BoxWrapper({ children }) {
-    return <div className="flex items-center flex-1 p-4 bg-white border border-gray-200 rounded-md">{children}</div>
+    return <div className="flex items-center flex-1 p-4 bg-white border border-gray-200 rounded-xl">{children}</div>
 }

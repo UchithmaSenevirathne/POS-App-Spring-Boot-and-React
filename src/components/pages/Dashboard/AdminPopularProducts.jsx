@@ -120,7 +120,7 @@ function AdminPopularProducts() {
       }, [popularProducts]);
 
     return (
-        <div ref={containerRef} className='bg-white px-4 pt-3 pb-4 rounded-md border border-gray-200 w-[23rem] max-h-[350px] overflow-y-auto'>
+        <div ref={containerRef} className='bg-white px-4 pt-3 pb-4 rounded-xl border border-gray-200 w-[23rem] max-h-[350px] overflow-y-auto'>
             <strong className='font-medium text-gray-700'>Popular Products</strong>
             <div className='flex flex-col gap-4 mt-4'>
                 {popularProducts.map(product => (
