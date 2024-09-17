@@ -91,9 +91,9 @@ function AdminPopularProducts() {
     }, []);
 
     return (
-        <div className='bg-white px-4 pt-3 pb-4 rounded-md border border-gray-200 w-[23rem] max-h-[310px] overflow-y-auto'>
+        <div className='bg-white px-4 pt-3 pb-4 rounded-md border border-gray-200 w-[23rem] max-h-[350px] overflow-y-auto'>
             <strong className='font-medium text-gray-700'>Popular Products</strong>
-            <div className='flex flex-col gap-3 mt-4'>
+            <div className='flex flex-col gap-5 mt-4'>
                 {popularProducts.map(product => (
                     <Link key={product.itemId} to={`/product/${product.itemId}`} className='flex hover:no-underline'>
                         <div className='w-10 h-10 overflow-hidden bg-gray-200 rounded-sm min-w-10'>
